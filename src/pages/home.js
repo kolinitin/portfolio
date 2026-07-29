@@ -50,7 +50,7 @@ function renderProjectCard(p) {
  */
 export async function initProjectsGrid(container) {
     try {
-        const projects = await fetch('/content/projects.json').then(res => res.json());
+        const projects = await fetch('./content/projects.json').then(res => res.json());
         container.innerHTML = projects.map(renderProjectCard).join('');
         initAnimations(container);
     } catch (err) {
