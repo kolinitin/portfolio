@@ -23,11 +23,11 @@ export async function initCaseStudy(container) {
 
     try {
         const [mdText, projects] = await Promise.all([
-            fetch(`/content/${caseStudyId}.md`).then(res => {
+            fetch(`./content/${caseStudyId}.md`).then(res => {
                 if (!res.ok) throw new Error(`Case study "${caseStudyId}" not found.`);
                 return res.text();
             }),
-            fetch('/content/projects.json').then(res => res.json()).catch(() => []),
+            fetch('./content/projects.json').then(res => res.json()).catch(() => []),
         ]);
 
         const projectMeta = projects.find(p => p.id === caseStudyId) || null;
