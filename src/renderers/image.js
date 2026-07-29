@@ -20,16 +20,16 @@ export function createImageRenderer(projectMeta) {
 
         if (token.href === 'placeholder') {
             if (projectMeta && projectMeta.imageUrl) {
-                return `<div class="${widthClass} my-12"><img src="${projectMeta.imageUrl}" alt="${projectMeta.imageText || token.text}" class="w-full h-auto rounded-[2.5rem] ghost-border block object-cover"></div>`;
+                return `<div class="${widthClass} my-12"><img src="${projectMeta.imageUrl}" alt="${projectMeta.imageText || token.text}" class="w-full h-auto rounded-2xl sm:rounded-[2.5rem] ghost-border block object-cover"></div>`;
             }
             // Styled placeholder block
             return `<div class="${widthClass} my-12">
-                <div class="w-full aspect-[16/9] bg-surface-container rounded-[2.5rem] overflow-hidden ghost-border relative">
+                <div class="w-full aspect-[16/9] bg-surface-container rounded-2xl sm:rounded-[2.5rem] overflow-hidden ghost-border relative">
                     <div class="absolute inset-0 bg-outline-variant/50 flex items-center justify-center text-white/20 uppercase tracking-widest text-xs">${token.text}</div>
                 </div>
             </div>`;
         }
 
-        return `<div class="${widthClass} my-12"><img src="${token.href}" alt="${token.text}" class="w-full h-auto rounded-[2.5rem] ghost-border block"></div>`;
+        return `<div class="${widthClass} my-12"><img src="${token.href}" alt="${token.text}" class="w-full h-auto rounded-2xl sm:rounded-[2.5rem] ghost-border block"></div>`;
     };
 }

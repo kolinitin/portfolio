@@ -11,7 +11,7 @@ export function renderVideo(text) {
     const url = text.trim();
     return `
     <div class="max-w-[640px] px-6 mx-auto w-full my-12">
-        <div class="bg-surface-container rounded-[2.5rem] overflow-hidden ghost-border relative w-full">
+        <div class="bg-surface-container rounded-2xl sm:rounded-[2.5rem] overflow-hidden ghost-border relative w-full">
             <video src="${url}" controls class="w-full h-auto" autoplay loop muted playsinline></video>
         </div>
     </div>`;
