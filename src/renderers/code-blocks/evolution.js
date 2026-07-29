@@ -31,14 +31,14 @@ export function renderEvolution(text) {
             : `<img src="${item.image}" alt="${item.year} - ${item.caption}" class="w-full h-full object-cover object-top rounded-xl pointer-events-none" draggable="false" />`;
 
         return `
-        <div class="evolution-card absolute top-0 flex flex-col items-center justify-start transition-none will-change-transform w-[260px] sm:w-[300px] md:w-[330px] pointer-events-none" data-index="${index}">
-            <div class="relative w-full h-[640px] sm:h-[640px] rounded-2xl overflow-hidden bg-[#1a1b1e] border border-white/10 p-2 shadow-2xl mb-3 flex items-center justify-center">
+        <div class="evolution-card absolute top-0 flex flex-col items-center justify-start transition-none will-change-transform w-[220px] xs:w-[240px] sm:w-[300px] md:w-[330px] pointer-events-none" data-index="${index}">
+            <div class="relative w-full h-[420px] xs:h-[450px] sm:h-[640px] rounded-2xl overflow-hidden bg-[#1a1b1e] border border-white/10 p-2 shadow-2xl mb-2 sm:mb-3 flex items-center justify-center">
                 ${mediaHtml}
             </div>
-            <span class="font-display px-3 py-2 text-[18px] font-bold tracking-tight text-neutral-100">
+            <span class="font-display px-3 py-1 sm:py-2 text-[15px] sm:text-[18px] font-bold tracking-tight text-neutral-100">
                 ${item.year}
             </span>
-            <p class="font-body text-xs sm:text-sm text-white/70 text-center px-2 line-clamp-3 leading-relaxed">
+            <p class="font-body text-[11px] sm:text-sm text-white/70 text-center px-1 sm:px-2 line-clamp-3 leading-relaxed">
                 ${item.caption}
             </p>
         </div>
@@ -46,13 +46,13 @@ export function renderEvolution(text) {
     }).join('\n');
 
     const dotsHtml = items.map((item, index) => `
-        <button type="button" class="evolution-dot w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" data-dot-index="${index}" title="${item.year}"></button>
+        <button type="button" class="evolution-dot w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" data-dot-index="${index}" title="${item.year}"></button>
     `).join('\n');
 
     return `
-    <div class="evolution-container relative w-full my-8 select-none overflow-hidden cursor-grab active:cursor-grabbing" data-num-items="${items.length}">
+    <div class="evolution-container relative w-full my-6 sm:my-8 select-none overflow-hidden cursor-grab active:cursor-grabbing" data-num-items="${items.length}">
         <!-- Slides Track Stage -->
-        <div class="evolution-track relative w-full h-[780px] sm:h-[780px] flex items-start justify-center overflow-hidden pt-2">
+        <div class="evolution-track relative w-full h-[560px] xs:h-[600px] sm:h-[780px] flex items-start justify-center overflow-hidden pt-2">
             ${slidesHtml}
         </div>
 
