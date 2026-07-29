@@ -47,7 +47,7 @@ function setupCarouselInstance(container) {
             const translateX = dist * spacing;
             const scale = Math.max(0.65, 1 - absDist * 0.16);
             const opacity = Math.max(0, 1 - absDist * 0.55);
-            const zIndex = Math.round(100 - absDist * 10);
+            const zIndex = Math.round(30 - absDist * 5);
 
             card.style.transform = `translate3d(${translateX.toFixed(2)}px, 0, 0) scale(${scale.toFixed(4)})`;
             card.style.opacity = opacity.toFixed(4);
