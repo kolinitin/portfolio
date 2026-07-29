@@ -24,10 +24,16 @@ export function renderEvolution(text) {
 
     if (items.length === 0) return '';
 
-    const slidesHtml = items.map((item, index) => `
+    const slidesHtml = items.map((item, index) => {
+        const isVideo = Boolean(item.image.match(/\.(mp4|webm|mov)(\?.*)?$/i));
+        const mediaHtml = isVideo
+            ? `<video src="${item.image}" autoplay loop muted playsinline class="w-full h-full object-cover object-top rounded-xl pointer-events-none" draggable="false"></video>`
+            : `<img src="${item.image}" alt="${item.year} - ${item.caption}" class="w-full h-full object-cover object-top rounded-xl pointer-events-none" draggable="false" />`;
+
+        return `
         <div class="evolution-card absolute top-0 flex flex-col items-center justify-start transition-none will-change-transform w-[260px] sm:w-[300px] md:w-[330px] pointer-events-none" data-index="${index}">
             <div class="relative w-full h-[640px] sm:h-[640px] rounded-2xl overflow-hidden bg-[#1a1b1e] border border-white/10 p-2 shadow-2xl mb-3 flex items-center justify-center">
-                <img src="${item.image}" alt="${item.year} - ${item.caption}" class="w-full h-full object-cover object-top rounded-xl pointer-events-none" draggable="false" />
+                ${mediaHtml}
             </div>
             <span class="font-display px-3 py-2 text-[18px] font-bold tracking-tight text-neutral-100">
                 ${item.year}
@@ -36,7 +42,8 @@ export function renderEvolution(text) {
                 ${item.caption}
             </p>
         </div>
-    `).join('\n');
+        `;
+    }).join('\n');
 
     const dotsHtml = items.map((item, index) => `
         <button type="button" class="evolution-dot w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" data-dot-index="${index}" title="${item.year}"></button>
