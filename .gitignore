@@ -1,0 +1,12 @@
+# Node dependencies
+node_modules/
+
+# Production build output
+dist/
+
+# macOS system files
+.DS_Store
+
+# Local/sensitive keys
+githubkey
+githubkey.pub

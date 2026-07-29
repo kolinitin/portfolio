@@ -1,30 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitin Koli | Portfolio Coming Soon</title>
+    <title>Nitin Koli | Design Leadership</title>
+    <meta name="description"
+        content="Principal Product Designer with 15 years experience. Designing at scale for 250M+ users.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-    <div class="container">
-        <div class="glass-card">
-            <h1>Coming Soon</h1>
-            <p>I'm currently crafting a new digital experience. Stay tuned!</p>
-            <div class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
+
+<body class="bg-black text-white antialiased min-h-screen" data-page="index">
+
+    <!-- Header injected by main.js -->
+    <div id="site-header"></div>
+
+    <!-- Main Content Container -->
+    <main class="pt-32">
+
+        <!-- Hero Section -->
+        <section id="about" class="gsap-reveal max-w-[840px] w-full mx-auto px-6 pt-24">
+            <h1 class="text-5xl md:text-5xl font-medium leading-[1.1] mb-6">
+                I'm Nitin, I design &amp; evolve digital products used by millions.
+            </h1>
+            <p class="text-lg text-white/70 max-w-2xl mb-10 leading-relaxed">
+                A Principal Product Designer who's spent over a decade in the industry, now working independently —
+                bringing expertise in product strategy, design systems, and AI-augmented prototyping to startups and
+                product teams building at scale.
+            </p>
+
+            <div class="flex gap-4 mb-16">
+                <a href="work.html"
+                    class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-black font-medium text-sm transition-transform hover:scale-105">
+                    View my work &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="public/resume-nitin-koli.pdf" download="Nitin-Koli-Resume.pdf"
+                    class="inline-flex items-center justify-center px-6 py-3 rounded-full ghost-border text-white font-medium text-sm hover:bg-white/5 transition-colors">
+                    Download CV &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-arrow-down-to-line-icon lucide-arrow-down-to-line">
+                        <path d="M12 17V3" />
+                        <path d="m6 11 6 6 6-6" />
+                        <path d="M19 21H5" />
+                    </svg>
+                </a>
             </div>
-            <div class="footer">
-                <p>&copy; 2026 Nitin Koli. All rights reserved.</p>
+        </section>
+
+        <!-- Metric Highlight Cards -->
+        <section class="border-b border-white/10 pt-16 pb-24">
+            <div class="max-w-[840px] w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-surface rounded-2xl p-6 ghost-border hover:bg-surface-container transition-colors">
+                    <div class="text-[14px] font-medium uppercase tracking-[0.1em] text-white/50 mb-2">
+                        Users</div>
+                    <div class="text-4xl font-display font-medium text-white mb-4">250M+</div>
+                    <p class="text-m text-white/70 leading-relaxed">Scaled Dream11's user base from 2016 to 2026,
+                        driving growth at scale.</p>
+                </div>
+                <div class="bg-surface rounded-2xl p-6 ghost-border hover:bg-surface-container transition-colors"
+                    style="transition-delay: 100ms;">
+                    <div class="text-[14px] font-medium uppercase tracking-[0.1em] text-white/50 mb-2">
+                        Designers</div>
+                    <div class="text-4xl font-display font-medium text-white mb-4">6 &RightArrow; 55</div>
+                    <p class="text-m text-white/70 leading-relaxed">Built and scaled the design team, hiring across
+                        levels to support rapid growth.</p>
+                </div>
+                <div class="bg-surface rounded-2xl p-6 ghost-border hover:bg-surface-container transition-colors"
+                    style="transition-delay: 200ms;">
+                    <div class="text-[14px] font-medium uppercase tracking-[0.1em] text-white/50 mb-2">
+                        Revenue</div>
+                    <div class="text-4xl font-display font-medium text-white mb-4">$3B+</div>
+                    <p class="text-m text-white/70 leading-relaxed">Contributed to incremental revenue at Dream11 over
+                        10 years.</p>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- Selected Artifacts -->
+        <section id="work" class="max-w-[840px] w-full mx-auto px-6 py-24">
+            <h2 class="text-2xl font-bold text-white/100 mb-12">My work</h2>
+            <div id="projects-container" class="space-y-16">
+                <!-- Projects injected by main.js -->
+            </div>
+        </section>
+
+        <!-- Design Philosophy -->
+        <section id="leadership" class="border-t border-white/10 py-24">
+            <div class="max-w-[840px] w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="gsap-reveal">
+                    <h3 class="text-2xl font-bold mb-6">How I lead</h3>
+                    <p class="text-white/70 leading-relaxed mb-6">
+                        I build high-performing design teams with a focus on clarity, ownership, and speed.
+                        Scaled a team from 6 → 55 designers while leading work for 250M+ users.
+                        I drive alignment across product, engineering, and business, while staying hands-on on
+                        high-impact problems.
+                    </p>
+                    <!-- <a href="#"
+                        class="text-sm font-medium hover:text-accent transition-colors inline-flex items-center gap-2">
+                        Read more &rarr;
+                    </a> -->
+                </div>
+                <div class="gsap-reveal">
+                    <h3 class="text-2xl font-bold mb-6">Problems I solve</h3>
+                    <p class="text-white/70 leading-relaxed mb-6">
+                        I work on complex, high-scale product problems across growth, monetisation, and platform UX.
+                        From 40% cost reduction to pivoting products under regulatory pressure, I turn ambiguity into
+                        clear, shippable solutions.
+                        I focus on simplifying systems at scale while balancing user experience and business impact.
+                    </p>
+                    <!-- <a href="#"
+                        class="text-sm font-medium hover:text-[#8b5cf6] transition-colors inline-flex items-center gap-2">
+                        Read more &rarr;
+                    </a> -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer injected by main.js -->
+    <div id="site-footer" id="contact"></div>
+
+    <script type="module" src="/main.js"></script>
 </body>
+
 </html>
