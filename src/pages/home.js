@@ -28,7 +28,7 @@ function renderProjectCard(p) {
     return `
     <div class="gsap-reveal">
         <a href="case-study.html?id=${p.id}" class="block group">
-            <div class="w-full aspect-[16/9] bg-surface-container rounded-[2.5rem] overflow-hidden ghost-border mb-6 relative">
+            <div class="w-full aspect-[16/9] bg-surface-container rounded-2xl sm:rounded-[2.5rem] overflow-hidden ghost-border mb-6 relative">
                 ${imageHtml}
             </div>
             <div class="flex items-center gap-3 text-[10px] uppercase tracking-widest text-white/50 mb-3">
