@@ -47,4 +47,50 @@
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
+
+  .custom-horizontal-scroll {
+    display: flex;
+    justify-content: safe center;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .custom-horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+  }
+
+  .horizontal-screen-card {
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  @supports (animation-timeline: view(inline)) {
+    .horizontal-screen-card {
+      animation: screenHorizontalReveal linear both;
+      animation-timeline: view(inline);
+      animation-range: cover 0% cover 100%;
+    }
+
+    @keyframes screenHorizontalReveal {
+      0% {
+        opacity: 0.5;
+        transform: scale(0.94);
+      }
+      18% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      82% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0.5;
+        transform: scale(0.94);
+      }
+    }
+  }
 }

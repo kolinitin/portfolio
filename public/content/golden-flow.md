@@ -90,7 +90,7 @@ Team preview cards were originally generic grey boxes with names and numbers. Re
 
 ```evolution
 2023–24 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-23-24.png : Held steady with minor visual tweaks, combining Lineups View entry point with the Create Team FAB.
-2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-20-21.png : Carried the pitch background from full team preview onto the card itself — signaling it as a compact version, not plain text boxes.
+2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-20-21.png : Carried the pitch background from full team preview onto the card itself, signaling it as a compact version instead of plain text boxes.
 2017–18 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-17-18.png : Brought team composition info upfront, with direct edit and preview actions.
 2016–17 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-16-17.png : PWA version of My Teams.
 ```
@@ -109,13 +109,13 @@ RETENTION : 60% : Of match-active users
 ```
 
 ```evolution
-Team Creation Integrated : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-lineups-create-team.png : Letting users create teams within lineups view saw near-default usage — planned as the primary flow, but never shipped before the ban.
+Team Creation Integrated : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-lineups-create-team.png : Letting users create teams within lineups view saw near-default usage. It was planned as the primary flow but never shipped before the ban.
 Initial Launch : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-lineups-initial.png : Read-only side-by-side batting order. Research showed users wanted to build teams directly from here.
 ```
 
 ---
 
-## Screen / Feature :: Leaderboard with Live Mini Scorecard — Screen / Feature
+## Screen / Feature :: Leaderboard with Live Mini Scorecard (Screen / Feature)
 
 **Problem**: Users left the app to track live match scores separately from their fantasy rank.
 
@@ -155,7 +155,7 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-fantasy-commentary.png :
 
 ## Feature :: Compare Teams
 
-**Problem**: Users manually opened and closed other users' teams to mentally compare against their own — slow and error-prone.
+**Problem**: Users manually opened and closed other users' teams to mentally compare against their own. Slow and error-prone.
 
 **Solution**: Dedicated compare view showing both users' full 11 side by side, split into differing players and common players with different captain choices.
 
@@ -170,7 +170,7 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-compare-team.png : Dedic
 
 ---
 
-*This is a curated selection — not the full scope of work on this flow, which also included player info, full scorecard, private contests, team preview, my matches, my contests, winning states, contest details, choose captain & vice-captain, stats, and many other features built on top of these flows.*
+*This is a curated selection, not the full scope of work on this flow, which also included player info, full scorecard, private contests, team preview, my matches, my contests, winning states, contest details, choose captain & vice-captain, stats, and many other features built on top of these flows.*
 
 <!-- *A few related initiatives are documented as separate case studies, given their different scope from the UX/screen work above:* 
 

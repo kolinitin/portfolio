@@ -1,23 +1,24 @@
+import { renderScreens } from './screens.js';
+
 /**
  * Custom marked renderer for `screen` code blocks.
  *
- * Renders a single standalone screen (image or video) inside a sleek CSS mobile device frame.
- *
- * Line syntax options:
- * 1) URL
- * 2) URL : CAPTION
- * 3) TITLE : URL : CAPTION
- *
- * Examples:
- * ```screen
- * https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-16-17.png : Leaderboard screen with live mini-scorecard
- * ```
+ * Renders a single standalone screen or delegates to horizontal scroll for multiple items.
  *
  * @param {string} text - Raw code block text.
+ * @param {string} lang - Language tag (e.g. `screen`, `screen:small`, `screen:big`).
  * @returns {string} HTML string.
  */
-export function renderScreen(text) {
-    const rawLine = text.trim().split('\n')[0] || '';
+export function renderScreen(text, lang = '') {
+    const rawLines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
+    if (rawLines.length === 0) return '';
+
+    // If multiple lines or size tag present in lang, delegate to renderScreens
+    if (rawLines.length > 1 || (lang && (lang.includes(':') || lang.includes('small') || lang.includes('big')))) {
+        return renderScreens(text, lang);
+    }
+
+    const rawLine = rawLines[0];
     if (!rawLine) return '';
 
     const parts = rawLine.split(/\s+:\s+/).map(p => p.trim());

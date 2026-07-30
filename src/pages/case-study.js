@@ -1,6 +1,7 @@
 import { initAnimations, ScrollTrigger } from '../animations.js';
 import { buildRenderer } from '../renderers/index.js';
 import { initEvolutionCarousels } from '../components/evolution-carousel.js';
+import { initHorizontalScrollReveals } from '../components/horizontal-scroll.js';
 import { marked } from 'marked';
 
 /**
@@ -41,6 +42,9 @@ export async function initCaseStudy(container) {
 
         // Initialize scroll-pinned evolution carousels
         initEvolutionCarousels(container);
+
+        // Initialize horizontal scroll reveals
+        initHorizontalScrollReveals(container);
 
         // Animate newly rendered content and refresh scroll trigger positions
         initAnimations(container);
