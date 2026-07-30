@@ -140,7 +140,7 @@ export function renderScreens(text, lang = '') {
 
     return `
     <div class="gsap-reveal w-full max-w-none my-8 sm:my-12">
-        <div class="w-full overflow-x-auto custom-horizontal-scroll pb-5 pt-2 px-4 sm:px-12 items-start gap-6 sm:gap-6 before:content-[''] before:shrink-0 before:w-4 sm:before:w-8 after:content-[''] after:shrink-0 after:w-4 sm:after:w-8">
+        <div class="w-full overflow-x-auto custom-horizontal-scroll pb-5 pt-2 px-4 sm:px-12 items-start gap-6 sm:gap-16 before:content-[''] before:shrink-0 before:w-4 sm:before:w-8 after:content-[''] after:shrink-0 after:w-4 sm:after:w-8">
             ${screensHtml}
         </div>
     </div>

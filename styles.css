@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-black: #140f17;
-  --color-surface: #252628;
-  --color-surface-container: #252628;
+  --color-black: #0d0a10;
+  --color-surface: #18151f;
+  --color-surface-container: #221e2b;
   --color-white: #FFFFFF;
   --color-accent: #d29f22;
   --color-accent-red: #5d0018;
-  --color-outline-variant: #2e2f31;
+  --color-outline-variant: #2d2936;
 
   --font-display: "Rubik", sans-serif;
   --font-body: "Noto Sans", sans-serif;
@@ -20,6 +20,15 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessibility Focus Rings */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   h1,
