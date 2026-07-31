@@ -13,15 +13,48 @@ export function renderScreen(text, lang = '') {
     const rawLines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
     if (rawLines.length === 0) return '';
 
-    // If multiple lines or size tag present in lang, delegate to renderScreens
-    if (rawLines.length > 1 || (lang && (lang.includes(':') || lang.includes('small') || lang.includes('big')))) {
+    // If multiple lines or size/landscape tag present in lang, delegate to renderScreens
+    const langLower = (lang || '').toLowerCase();
+    if (rawLines.length > 1 || (lang && (lang.includes(':') || lang.includes('small') || lang.includes('big') || lang.includes('landscape')))) {
         return renderScreens(text, lang);
     }
 
-    const rawLine = rawLines[0];
+    let rawLine = rawLines[0];
     if (!rawLine) return '';
 
-    const parts = rawLine.split(/\s+:\s+/).map(p => p.trim());
+    let isLandscape = langLower.includes('landscape');
+    let aspectW = isLandscape ? 892 : 412;
+    let aspectH = isLandscape ? 412 : 892;
+
+    // Check ONLY for explicit resolution tag at line start (e.g. `892x412 :`) or in brackets (e.g. `[892x412]`)
+    const resMatch = rawLine.match(/^(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)\s*:/i) ||
+                     rawLine.match(/\[(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)[\]]/i);
+    if (resMatch) {
+        const w = parseFloat(resMatch[1]);
+        const h = parseFloat(resMatch[2]);
+        if (w > 0 && h > 0) {
+            aspectW = w;
+            aspectH = h;
+            if (w > h) isLandscape = true;
+        }
+    }
+
+    // Check ONLY for explicit `landscape :` line prefix, `[landscape]` tag, or filename matching `-_landscape.`
+    if (rawLine.match(/^landscape\s*:/i) || rawLine.match(/\[landscape\]/i) || rawLine.match(/[-_]landscape\.(png|jpg|jpeg|webp|mp4|webm)/i)) {
+        isLandscape = true;
+        if (aspectW < aspectH) {
+            aspectW = 892;
+            aspectH = 412;
+        }
+    }
+
+    rawLine = rawLine
+        .replace(/^landscape\s*:\s*/i, '')
+        .replace(/\[landscape\]/gi, '')
+        .replace(/\[?(?:aspect|ratio|size|resolution)?[:=]?\s*\d+(?:\.\d+)?\s*[:x\/]\s*\d+(?:\.\d+)?\]?/gi, '')
+        .trim();
+
+    const parts = rawLine.split(/\s+:\s+/).map(p => p.trim()).filter(Boolean);
 
     let title = '';
     let mediaUrl = '';
@@ -48,8 +81,8 @@ export function renderScreen(text, lang = '') {
     const isVideo = Boolean(mediaUrl.match(/\.(mp4|webm|mov)(\?.*)?$/i));
 
     const mediaHtml = isVideo
-        ? `<div class="custom-video-player relative w-full h-full group overflow-hidden rounded-[1.75rem]">
-            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-auto rounded-[1.75rem] block object-cover pointer-events-auto cursor-pointer"></video>
+        ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden rounded-[1.75rem]">
+            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-full rounded-[1.75rem] block object-cover pointer-events-auto cursor-pointer"></video>
             
             <!-- Hover Video Overlay Controls -->
             <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
@@ -72,7 +105,7 @@ export function renderScreen(text, lang = '') {
                 </div>
             </div>
         </div>`
-        : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" class="w-full h-auto rounded-[1.75rem] block object-cover" />`;
+        : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full rounded-[1.75rem] block object-cover" />`;
 
     const titleHtml = title
         ? `<div class="mt-4"><span class="font-display px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 rounded-full border border-amber-500/20">${title}</span></div>`
@@ -82,17 +115,25 @@ export function renderScreen(text, lang = '') {
         ? `<p class="font-body text-xs sm:text-sm text-white/70 text-center px-4 leading-relaxed mt-2">${caption}</p>`
         : '';
 
+    const cardWidthClass = isLandscape
+        ? 'max-w-[480px] sm:max-w-[580px]'
+        : 'max-w-[340px] sm:max-w-[380px]';
+
+    const dynamicIslandClass = isLandscape
+        ? 'left-3.5 top-1/2 -translate-y-1/2 h-16 w-3.5 flex-col gap-1.5'
+        : 'top-4 left-1/2 -translate-x-1/2 w-20 h-4 gap-1.5';
+
     return `
-    <div class="gsap-reveal w-full max-w-[340px] sm:max-w-[380px] mx-auto my-12 flex flex-col items-center select-none">
+    <div class="w-full ${cardWidthClass} mx-auto my-12 flex flex-col items-center select-none">
         <!-- CSS Mobile Device Frame -->
         <div class="relative w-full rounded-[2.25rem] bg-[#1a1b1e] border-[6px] border-[#2b2c30] shadow-2xl p-2 ghost-border">
             <!-- Dynamic Island / Top Speaker Bar -->
-            <div class="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full z-20 flex items-center justify-center gap-1.5 opacity-90">
+            <div class="absolute ${dynamicIslandClass} bg-black rounded-full z-20 flex items-center justify-center opacity-90">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#0d0d0e]"></span>
                 <span class="w-1.5 h-1.5 rounded-full bg-[#16171a]"></span>
             </div>
             <!-- Screen Media Container -->
-            <div class="relative w-full overflow-hidden rounded-[1.75rem] bg-black">
+            <div class="screen-media-frame relative w-full overflow-hidden rounded-[1.75rem] bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
                 ${mediaHtml}
             </div>
         </div>

@@ -158,7 +158,7 @@ export function renderEvolution(text, lang = '') {
     const slidesHtml = items.map((item, index) => {
         const isVideo = Boolean(item.image.match(/\.(mp4|webm|mov)(\?.*)?$/i));
         const mediaHtml = isVideo
-            ? `<div class="custom-video-player relative w-full h-full group overflow-hidden rounded-[1.1rem] sm:rounded-[1.4rem]">
+            ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden rounded-[1.1rem] sm:rounded-[1.4rem]">
                 <video src="${item.image}" loop muted playsinline class="w-full h-full object-cover object-top rounded-[1.1rem] sm:rounded-[1.4rem] pointer-events-auto cursor-pointer" draggable="false"></video>
                 
                 <!-- Hover Video Overlay Controls -->
@@ -182,7 +182,7 @@ export function renderEvolution(text, lang = '') {
                     </div>
                 </div>
             </div>`
-            : `<img src="${item.image}" alt="${item.caption || 'Evolution screen'}" class="w-full h-full object-cover object-top rounded-[1.1rem] sm:rounded-[1.4rem] pointer-events-none" draggable="false" />`;
+            : `<img src="${item.image}" alt="${item.caption || 'Evolution screen'}" class="absolute inset-0 w-full h-full object-cover object-top rounded-[1.1rem] sm:rounded-[1.4rem] pointer-events-none" draggable="false" />`;
 
         return `
         <div class="evolution-card absolute top-0 flex flex-col items-center justify-start transition-none will-change-transform pointer-events-none" style="--card-w-base: ${cardBase}px; --card-w-sm: ${cardSm}px; --card-w-md: ${cardMd}px;" data-index="${index}">

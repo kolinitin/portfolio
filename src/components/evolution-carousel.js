@@ -87,7 +87,7 @@ function setupCarouselInstance(container) {
             if (i === activeIndex && isVisible) {
                 // Focused card: play if paused
                 if (video.paused) {
-                    video.play().catch(() => {});
+                    video.play().catch(() => { });
                 }
             } else {
                 // Non-focused card: pause and reset to start
@@ -209,29 +209,11 @@ function setupCarouselInstance(container) {
         });
     });
 
-    function syncTrackHeight() {
-        const track = container.querySelector('.evolution-track');
-        if (!track || !cards.length) return;
-
-        let maxHeight = 0;
-        cards.forEach(card => {
-            const h = card.offsetHeight || card.getBoundingClientRect().height;
-            if (h > maxHeight) maxHeight = h;
-        });
-
-        if (maxHeight > 0) {
-            track.style.height = `${Math.ceil(maxHeight)}px`;
-        }
-    }
-
     // Resize handler
     window.addEventListener('resize', () => {
-        syncTrackHeight();
         updateCardPositions();
     });
 
-    // Initial render positioning & height sync
-    syncTrackHeight();
+    // Initial render positioning
     updateCardPositions();
-    setTimeout(syncTrackHeight, 100);
 }

@@ -100,6 +100,7 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/fantasy-and-
 https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/hit-or-miss-compressed.mp4 : Real-time match engagement tools, like over-by-over predictions
 https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/send-shout-out-compressed.mp4 : Send a shoutout or a message to the stream
 https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/home-compressed.mp4 : Full home page: fantasy, live streams, moments, and upcoming streams
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/db-low-balance.png : Dreambucks purchase screen, triggered on low balance
 ```
 
 ---
@@ -112,6 +113,30 @@ End-to-end execution across ideation → design → development → launch, deli
 USER GROWTH : 5M → 7M : Grew within 2 months of launching Watch Along on the Free-to-Play platform.
 ENGAGEMENT : 19.8 mins : Avg daily time spent, driven by live match interactions and social participation
 EXPANSION : New Line : Non-RMG product built on the existing sports audience and infra
+```
+
+---
+
+## Updates :: Post-Launch Iterations
+
+Launching in 2 months meant living with known UX gaps. Post-launch, we used engagement data to prioritize and refine the flows that mattered most.
+
+```screens:big
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/new-home.png : Redesigned Watch-Along home
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/livestream-portrait-veiw.png : Widened the stream into landscape form, rearranging a few aspects of the screen
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/squad-goal-expanded.png : Engagement tools got an expand and collapse mode, for quick swiping between them
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/poll-text-expanded.png : Introduced textual polls
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/polls-expanded.png : Introduced visual A-vs-B real-time polls
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/hit-or-miss-expanded.png : Hit or Miss, shown in the expanded activity card alongside DB balance
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/join-the-stage.png : Introduced Join the Stage: paid entry for 1:1 chat with the creator
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/send-shoutout.png : Revisited shoutouts, bringing it upfront while typing a message
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/new-shoutouts.png : Tap to open and read shoutouts
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/gifts.png : Replaced reactions with gifts, giving users another way to get highlighted on stream and show their fandom
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/entertainment-drawer.png : New activity drawer, replacing the horizontal dump of engagement tools
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/livestream-controls.png : Video controls to enter landscape mode
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/livestream-landscape.png : Default landscape view
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/chat-shoutout-landscape.png : Drawer opens when the user taps the expand arrow
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/squad-goal-landscape.png : Squad goals and other active engagement activities
 ```
 
 ---
