@@ -25,7 +25,7 @@ export function createCodeBlockRenderer() {
         if (lang === 'pointers') return renderPointers(token.text);
         if (lang === 'results') return renderResults(token.text);
         if (lang === 'video') return renderVideo(token.text);
-        if (lang === 'evolution') return renderEvolution(token.text);
+        if (lang.startsWith('evolution')) return renderEvolution(token.text, token.lang || lang);
 
         if (lang.startsWith('screens') || lang.startsWith('screen-scroll') || lang.startsWith('screens-scroll')) {
             return renderScreens(token.text, lang);

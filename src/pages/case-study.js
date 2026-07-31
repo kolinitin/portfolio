@@ -2,6 +2,8 @@ import { initAnimations, ScrollTrigger } from '../animations.js';
 import { buildRenderer } from '../renderers/index.js';
 import { initEvolutionCarousels } from '../components/evolution-carousel.js';
 import { initHorizontalScrollReveals } from '../components/horizontal-scroll.js';
+import { initVideoPlayers } from '../components/video-player.js';
+import { initAssetLoader } from '../components/asset-loader.js';
 import { marked } from 'marked';
 
 /**
@@ -45,6 +47,12 @@ export async function initCaseStudy(container) {
 
         // Initialize horizontal scroll reveals
         initHorizontalScrollReveals(container);
+
+        // Initialize hover video player controls & seek bars
+        initVideoPlayers(container);
+
+        // Initialize asset loader for rendered markdown images and videos
+        initAssetLoader(container);
 
         // Animate newly rendered content and refresh scroll trigger positions
         initAnimations(container);

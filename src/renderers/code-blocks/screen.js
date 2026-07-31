@@ -48,7 +48,30 @@ export function renderScreen(text, lang = '') {
     const isVideo = Boolean(mediaUrl.match(/\.(mp4|webm|mov)(\?.*)?$/i));
 
     const mediaHtml = isVideo
-        ? `<video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-auto rounded-[1.75rem] block object-cover"></video>`
+        ? `<div class="custom-video-player relative w-full h-full group overflow-hidden rounded-[1.75rem]">
+            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-auto rounded-[1.75rem] block object-cover pointer-events-auto cursor-pointer"></video>
+            
+            <!-- Hover Video Overlay Controls -->
+            <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
+                <!-- Center Play/Pause Badge Button -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <button type="button" class="video-play-btn w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shadow-xl hover:scale-110 hover:bg-black/85 transition-all pointer-events-auto cursor-pointer focus:outline-none" aria-label="Pause video">
+                        <svg class="icon-play w-6 h-6 sm:w-7 sm:h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M9 5v14l11-7z"/></svg>
+                        <svg class="icon-pause w-6 h-6 sm:w-7 sm:h-7 block" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                </div>
+
+                <!-- Bottom Seek Bar Track -->
+                <div class="absolute inset-x-0 bottom-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-auto">
+                    <div class="video-seek-track relative w-full h-4 sm:h-5 flex items-center cursor-pointer touch-none group/seek py-1">
+                        <div class="video-seek-bg w-full h-1.5 sm:h-2 bg-white/30 rounded-full overflow-hidden relative backdrop-blur-sm">
+                            <div class="video-seek-fill h-full bg-amber-400 rounded-full w-0"></div>
+                        </div>
+                        <div class="video-seek-handle absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-white rounded-full shadow border border-black/20 pointer-events-none -ml-1.75 sm:-ml-2 transform transition-transform group-hover/seek:scale-125" style="left: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>`
         : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" class="w-full h-auto rounded-[1.75rem] block object-cover" />`;
 
     const titleHtml = title

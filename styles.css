@@ -61,6 +61,9 @@
     display: flex;
     justify-content: safe center;
     overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
   }
@@ -74,6 +77,34 @@
   .horizontal-screen-card {
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
+  }
+
+  .evolution-card {
+    width: var(--card-w-base, 220px);
+  }
+  @media (min-width: 640px) {
+    .evolution-card {
+      width: var(--card-w-sm, 300px);
+    }
+  }
+  @media (min-width: 768px) {
+    .evolution-card {
+      width: var(--card-w-md, 330px);
+    }
+  }
+
+  .evolution-track {
+    height: var(--track-h-base);
+  }
+  @media (min-width: 640px) {
+    .evolution-track {
+      height: var(--track-h-sm);
+    }
+  }
+  @media (min-width: 768px) {
+    .evolution-track {
+      height: var(--track-h-md);
+    }
   }
 
   @supports (animation-timeline: view(inline)) {
@@ -101,5 +132,33 @@
         transform: scale(0.94);
       }
     }
+  }
+
+  /* Subtle Aesthetic Asset Skeleton Loader */
+  .asset-loading-skeleton {
+    position: relative;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.07) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-skeleton 1.8s infinite ease-in-out;
+  }
+
+  @keyframes shimmer-skeleton {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .media-fade-in {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity;
+  }
+
+  .media-fade-in.is-loaded {
+    opacity: 1;
   }
 }

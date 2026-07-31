@@ -3,6 +3,8 @@ import { initNav } from './src/components/nav.js';
 import { initAnimations } from './src/animations.js';
 import { initProjectsGrid } from './src/pages/home.js';
 import { initCaseStudy } from './src/pages/case-study.js';
+import { initVideoPlayers } from './src/components/video-player.js';
+import { initAssetLoader } from './src/components/asset-loader.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Inject shared header and footer on every page
@@ -10,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate any static .gsap-reveal elements present in the initial HTML
     initAnimations();
+
+    // Initialize custom video players on static DOM
+    initVideoPlayers();
+
+    // Initialize asset loader for static page images and videos
+    initAssetLoader();
 
     // Route to page-specific initialisation based on known DOM elements
     const projectsContainer = document.getElementById('projects-container');

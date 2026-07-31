@@ -33,6 +33,7 @@ function setupCarouselInstance(container) {
     let startX = 0;
     let startIndex = 0;
     let wheelSnapTimeout = null;
+    let lastActiveIndex = -1;
 
     function updateCardPositions() {
         const viewportWidth = window.innerWidth;
@@ -69,6 +70,33 @@ function setupCarouselInstance(container) {
         // Update prev/next button states
         if (prevBtn) prevBtn.disabled = roundedIndex <= 0;
         if (nextBtn) nextBtn.disabled = roundedIndex >= numItems - 1;
+
+        // Manage video focus when active card index changes
+        if (roundedIndex !== lastActiveIndex) {
+            lastActiveIndex = roundedIndex;
+            updateVideoFocus(roundedIndex);
+        }
+    }
+
+    // Manage video play/pause/reset based on card focus state
+    function updateVideoFocus(activeIndex) {
+        cards.forEach((card, i) => {
+            const video = card.querySelector('video');
+            if (!video) return;
+
+            if (i === activeIndex && isVisible) {
+                // Focused card: play if paused
+                if (video.paused) {
+                    video.play().catch(() => {});
+                }
+            } else {
+                // Non-focused card: pause and reset to start
+                if (!video.paused || video.currentTime > 0) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+        });
     }
 
     function tick() {
@@ -94,11 +122,13 @@ function setupCarouselInstance(container) {
                 if (!animFrameId) {
                     animFrameId = requestAnimationFrame(tick);
                 }
+                updateVideoFocus(Math.round(currentIndex));
             } else {
                 if (animFrameId) {
                     cancelAnimationFrame(animFrameId);
                     animFrameId = null;
                 }
+                updateVideoFocus(-1); // Pause & reset all videos when off-screen
             }
         });
     }, { threshold: 0.05 });
@@ -107,7 +137,7 @@ function setupCarouselInstance(container) {
 
     // --- Drag & Swipe Handlers ---
     function onPointerDown(e) {
-        if (e.target.closest('button')) return; // Ignore button clicks
+        if (e.target.closest('button, .custom-video-controls, .video-seek-track')) return; // Ignore button and video control clicks
         isDragging = true;
         startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
         startIndex = targetIndex;
@@ -143,16 +173,19 @@ function setupCarouselInstance(container) {
 
     // --- Trackpad / Mouse Wheel Horizontal Delta Handler ---
     container.addEventListener('wheel', (e) => {
-        // If horizontal scroll is dominant or Shift key is pressed
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+        const absX = Math.abs(e.deltaX);
+        const absY = Math.abs(e.deltaY);
+
+        // Require intentional horizontal scroll threshold (> 12px) to prevent trackpad vertical drift hijacking
+        if ((absX > 12 && absX > absY * 1.5) || (e.shiftKey && absY > 12)) {
             e.preventDefault();
             const delta = e.shiftKey ? e.deltaY : e.deltaX;
-            targetIndex = Math.max(0, Math.min(numItems - 1, targetIndex + delta * 0.003));
+            targetIndex = Math.max(0, Math.min(numItems - 1, targetIndex + delta * 0.0025));
 
             clearTimeout(wheelSnapTimeout);
             wheelSnapTimeout = setTimeout(() => {
                 targetIndex = Math.round(targetIndex);
-            }, 120);
+            }, 150);
         }
     }, { passive: false });
 
@@ -176,11 +209,29 @@ function setupCarouselInstance(container) {
         });
     });
 
+    function syncTrackHeight() {
+        const track = container.querySelector('.evolution-track');
+        if (!track || !cards.length) return;
+
+        let maxHeight = 0;
+        cards.forEach(card => {
+            const h = card.offsetHeight || card.getBoundingClientRect().height;
+            if (h > maxHeight) maxHeight = h;
+        });
+
+        if (maxHeight > 0) {
+            track.style.height = `${Math.ceil(maxHeight)}px`;
+        }
+    }
+
     // Resize handler
     window.addEventListener('resize', () => {
+        syncTrackHeight();
         updateCardPositions();
     });
 
-    // Initial render positioning
+    // Initial render positioning & height sync
+    syncTrackHeight();
     updateCardPositions();
+    setTimeout(syncTrackHeight, 100);
 }

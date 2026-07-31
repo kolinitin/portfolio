@@ -38,6 +38,7 @@ Also housed the DreamSale campaign, "Is Hafte Naya Kya?", an 11-week themed week
 &nbsp;
 
 ```evolution
+size: 360x720
 2024–25 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/teaser_mockup.mp4 : Extended the yearly IPL campaign further, mirroring external marketing communication directly and seamlessly within the app.
 2022–23 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-22-23.png : Redesigned home to include story-style marketing content, with a dedicated section for IPL as the marquee tournament.
 2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-20-21.png : Redesigned match cards to surface more critical match info (bottom nav carried over, not shown in this crop).
@@ -54,6 +55,7 @@ Primary screen driving contest joins and the core revenue decision point in the 
 &nbsp;
 
 ```evolution
+size: 360x720
 2024–25 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-contests-24-25.png : Cleaned up the top section with a scalable approach to Quick Join and sorting pills, alongside minor visual refinements.
 2022–23 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-contests-22-23.png : Added Quick Join to cut the time power users spent joining hundreds of contests, plus a Create Team FAB and quick contest navigation.
 2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-contests-20-21.png : Revamped contest cards to surface critical data points, based on what research showed users actually scanned for.
@@ -73,6 +75,7 @@ COMPLETION RATE : 90% : On team creation funnel.
 ```
 
 ```evolution
+size: 360x720
 2024–25 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-create-team-24-25.png : Learned that stats weren't adding much value, so removed redundant data points and optimized for a cleaner screen.
 2022–23 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-create-team-22-23.png : Delivered a new categorization style for announced players, alongside a revamped FAB and quick stats.
 2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-create-team-20-21.png : Moved progression and team details to the top; player cells now show announced playing XI status.
@@ -89,6 +92,7 @@ Team preview cards were originally generic grey boxes with names and numbers. Re
 &nbsp;
 
 ```evolution
+size: 360x720
 2023–24 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-23-24.png : Held steady with minor visual tweaks, combining Lineups View entry point with the Create Team FAB.
 2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-20-21.png : Carried the pitch background from full team preview onto the card itself, signaling it as a compact version instead of plain text boxes.
 2017–18 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-my-teams-17-18.png : Brought team composition info upfront, with direct edit and preview actions.
@@ -109,6 +113,7 @@ RETENTION : 60% : Of match-active users
 ```
 
 ```evolution
+size: 360x720
 Team Creation Integrated : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-lineups-create-team.png : Letting users create teams within lineups view saw near-default usage. It was planned as the primary flow but never shipped before the ban.
 Initial Launch : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-lineups-initial.png : Read-only side-by-side batting order. Research showed users wanted to build teams directly from here.
 ```
@@ -127,6 +132,7 @@ RETENTION : 80% : Of match-active users
 ```
 
 ```evolution
+size: 360x720
 2024–25 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-24-25.mp4 : Added special-event animations and let users open the full scorecard directly from the mini version, without switching tabs.
 2022–23 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-22-23.png : Added ball-by-ball events, engaging users to track each ball alongside their fantasy rank.
 2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-20-21.png : Visual improvements to bring more match excitement into the scorecard.

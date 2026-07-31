@@ -88,14 +88,18 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/watch-along-
 ## launch :: Final Screens
 
 With scope locked, we moved into final UI and interaction design across the full flow.
+
+Screens shown reflect post-launch refinements. Initial launch prioritized speed; UX improvements followed in subsequent iterations.
 &nbsp;
 
-```evolution
-Home → Live-Stream → Fantasy: Full Flow : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/livestream-press.mp4 : New home surfacing live watch-alongs, with fantasy entry points on the live-stream screen
-2022–23 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-22-23.png : Added ball-by-ball events, engaging users to track each ball alongside their fantasy rank.
-2020–21 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-20-21.png : Visual improvements to bring more match excitement into the scorecard.
-2017–18 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-17-18.png : Introduced a simple scorecard for match tracking.
-2016–17 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-leaderboard-16-17.png : Initial PWA leaderboard, no live score tracking.
+```evolution 412x892 width=320
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/live-stream-landing.mp4 : Screen users see on landing in a live stream
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/shoutouts-compressed.mp4 : Tap to open shoutouts sent by others
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/activity-bar-compressed.mp4 : Activity bar with squad goals and updates on the current live stream
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/fantasy-and-reactions-compressed.mp4 : Entry point to scores and fantasy contests
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/hit-or-miss-compressed.mp4 : Real-time match engagement tools, like over-by-over predictions
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/send-shout-out-compressed.mp4 : Send a shoutout or a message to the stream
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/home-compressed.mp4 : Full home page: fantasy, live streams, moments, and upcoming streams
 ```
 
 ---
@@ -105,7 +109,7 @@ Home → Live-Stream → Fantasy: Full Flow : https://pub-74f51145ab1c46dcabc851
 End-to-end execution across ideation → design → development → launch, delivered in ~2 months under high uncertainty.
 
 ```results
-USER GROWTH : 5M → 7M : WAU scaled in 2 months despite the shift from core RMG flows
+USER GROWTH : 5M → 7M : Grew within 2 months of launching Watch Along on the Free-to-Play platform.
 ENGAGEMENT : 19.8 mins : Avg daily time spent, driven by live match interactions and social participation
 EXPANSION : New Line : Non-RMG product built on the existing sports audience and infra
 ```
