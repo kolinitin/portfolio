@@ -79,6 +79,18 @@
     will-change: opacity, transform;
   }
 
+  .evolution-container {
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .evolution-card img,
+  .evolution-card video {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
   .evolution-card {
     width: var(--card-w-base, 220px);
   }

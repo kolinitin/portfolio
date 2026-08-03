@@ -26,6 +26,8 @@ One gameplay journey: choose a match and contest, build a team, track it live. W
 7. Compare Teams (Feature)
 8. Fantasy Commentary (Feature)
 
+Each iteration shipped through staged, data-validated rollouts. Individual metrics for every step aren't included here, only what performed well enough to ship broadly.
+
 *This is a curated selection, not the full scope of work on this flow.*
 
 ---

@@ -26,11 +26,15 @@ function setupCarouselInstance(container) {
     let targetIndex = 0;
     let currentIndex = 0;
     let animFrameId = null;
-    let isVisible = false;
-
-    // Drag state
+    let isVisible = false;    // Gesture & drag state
     let isDragging = false;
+    let isDirectionLocked = false;
+    let isHorizontalSwipe = false;
     let startX = 0;
+    let startY = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocityX = 0;
     let startIndex = 0;
     let wheelSnapTimeout = null;
     let lastActiveIndex = -1;
@@ -102,8 +106,10 @@ function setupCarouselInstance(container) {
     function tick() {
         if (!isVisible) return;
 
-        // Smooth Damped Interpolation (Lerp)
-        currentIndex += (targetIndex - currentIndex) * 0.12;
+        // While dragging, stick 1-to-1 to finger/mouse (tight lerp 0.35).
+        // On release, smoothly damp to targetIndex (lerp 0.14).
+        const lerpFactor = isDragging ? 0.35 : 0.14;
+        currentIndex += (targetIndex - currentIndex) * lerpFactor;
 
         if (Math.abs(targetIndex - currentIndex) < 0.0005) {
             currentIndex = targetIndex;
@@ -135,41 +141,104 @@ function setupCarouselInstance(container) {
 
     observer.observe(container);
 
-    // --- Drag & Swipe Handlers ---
-    function onPointerDown(e) {
-        if (e.target.closest('button, .custom-video-controls, .video-seek-track')) return; // Ignore button and video control clicks
+    // --- Unified Touch & Pointer Drag Handlers ---
+    function onStart(e) {
+        // Ignore clicks on buttons, video controls, or seek bars
+        if (e.target.closest('button, .custom-video-controls, .video-seek-track')) return;
+
         isDragging = true;
-        startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+        isDirectionLocked = false;
+        isHorizontalSwipe = false;
+
+        const touch = e.touches ? e.touches[0] : e;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        lastX = startX;
+        lastTime = performance.now();
+        velocityX = 0;
         startIndex = targetIndex;
+
+        // Prevent native desktop text selection / ghost drag
+        if (e.type === 'mousedown') {
+            e.preventDefault();
+        }
     }
 
-    function onPointerMove(e) {
+    function onMove(e) {
         if (!isDragging) return;
-        const currentX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+
+        const touch = e.touches ? e.touches[0] : e;
+        const currentX = touch.clientX;
+        const currentY = touch.clientY;
         const deltaX = currentX - startX;
+        const deltaY = currentY - startY;
+
+        // Touch Directional Lock (Prevents page scroll during horizontal swipe)
+        if (!isDirectionLocked && e.touches) {
+            const absX = Math.abs(deltaX);
+            const absY = Math.abs(deltaY);
+
+            // Require 6px threshold to establish gesture intent
+            if (absX > 6 || absY > 6) {
+                isDirectionLocked = true;
+                if (absX > absY) {
+                    isHorizontalSwipe = true;
+                } else {
+                    // Vertical intent -> release drag so page scrolls naturally
+                    isHorizontalSwipe = false;
+                    isDragging = false;
+                    return;
+                }
+            }
+        }
+
+        // Prevent vertical page scroll if user is swiping horizontally
+        if (isHorizontalSwipe && e.cancelable) {
+            e.preventDefault();
+        }
+
+        // Track swipe velocity (px per ms)
+        const now = performance.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+            velocityX = (currentX - lastX) / dt;
+            lastX = currentX;
+            lastTime = now;
+        }
+
         const cardWidth = cards[0]?.offsetWidth || 300;
         const dragDistancePerCard = cardWidth * 0.9;
-
         const indexShift = -deltaX / dragDistancePerCard;
-        targetIndex = Math.max(0, Math.min(numItems - 1, startIndex + indexShift));
+
+        targetIndex = Math.max(-0.2, Math.min(numItems - 0.8, startIndex + indexShift));
     }
 
-    function onPointerUp() {
+    function onEnd() {
         if (!isDragging) return;
         isDragging = false;
-        // Snap to nearest card on release
-        targetIndex = Math.round(targetIndex);
+
+        // Flick Velocity Momentum: if flicked fast (|velocityX| > 0.3), slide to next/prev card
+        if (Math.abs(velocityX) > 0.3) {
+            if (velocityX < 0) {
+                targetIndex = Math.min(numItems - 1, Math.floor(targetIndex) + 1);
+            } else {
+                targetIndex = Math.max(0, Math.ceil(targetIndex) - 1);
+            }
+        } else {
+            targetIndex = Math.max(0, Math.min(numItems - 1, Math.round(targetIndex)));
+        }
     }
 
-    // Mouse events
-    container.addEventListener('mousedown', onPointerDown);
-    window.addEventListener('mousemove', onPointerMove);
-    window.addEventListener('mouseup', onPointerUp);
+    // Desktop Mouse events
+    container.addEventListener('mousedown', onStart);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onEnd);
 
-    // Touch events
-    container.addEventListener('touchstart', onPointerDown, { passive: true });
-    window.addEventListener('touchmove', onPointerMove, { passive: true });
-    window.addEventListener('touchend', onPointerUp);
+    // Mobile Touch events (non-passive touchmove for direction lock preventDefault)
+    container.addEventListener('touchstart', onStart, { passive: true });
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
 
     // --- Trackpad / Mouse Wheel Horizontal Delta Handler ---
     container.addEventListener('wheel', (e) => {

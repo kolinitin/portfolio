@@ -75,7 +75,7 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/watch-along-
 
 ### Deprioritized for Launch
 
-- **Raise-hand to go on stage:** High build effort with unclear demand — unproven whether users would proactively request to join a creator's stream. Replaced with a simpler flow: creators invite users on stage directly from the Creator Panel.
+- **Raise-hand to go on stage:** High build effort with unclear demand, unproven whether users would proactively request to join a creator's stream. Replaced with a simpler flow: creators invite users on stage directly from the Creator Panel.
 
 - **Live leaderboard rank on stream:** High cost to compute and surface real-time rank across multiple joined teams. Moved fantasy leaderboard access behind a click in the bottom controls instead of surfacing it live on-screen.
 
@@ -93,14 +93,14 @@ Screens shown reflect post-launch refinements. Initial launch prioritized speed;
 &nbsp;
 
 ```evolution 412x892 width=320
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/live-stream-landing.mp4 : Screen users see on landing in a live stream
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/shoutouts-compressed.mp4 : Tap to open shoutouts sent by others
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/activity-bar-compressed.mp4 : Activity bar with squad goals and updates on the current live stream
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/fantasy-and-reactions-compressed.mp4 : Entry point to scores and fantasy contests
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/hit-or-miss-compressed.mp4 : Real-time match engagement tools, like over-by-over predictions
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/send-shout-out-compressed.mp4 : Send a shoutout or a message to the stream
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/home-compressed.mp4 : Full home page: fantasy, live streams, moments, and upcoming streams
-https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/db-low-balance.png : Dreambucks purchase screen, triggered on low balance
+Live-Stream Landing : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/live-stream-landing.mp4 : Screen users see on landing in a live stream
+Shoutouts : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/shoutouts-compressed.mp4 : Tap to open shoutouts sent by others
+Activity Bar : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/activity-bar-compressed.mp4 : Activity bar with squad goals and updates on the current live stream
+Scores & Fantasy Entry : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/fantasy-and-reactions-compressed.mp4 : Entry point to scores and fantasy contests
+Live Predictions : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/hit-or-miss-compressed.mp4 : Real-time match engagement tools, like over-by-over predictions
+Chat & Shoutouts : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/send-shout-out-compressed.mp4 : Send a shoutout or a message to the stream
+Home Page : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/home-compressed.mp4 : Full home page: fantasy, live streams, moments, and upcoming streams
+In-App Currency : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/db-low-balance.png : Dreambucks purchase screen, triggered on low balance
 ```
 
 ---

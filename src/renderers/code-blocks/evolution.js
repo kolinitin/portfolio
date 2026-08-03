@@ -129,7 +129,7 @@ export function renderEvolution(text, lang = '') {
 
     const getCardHeight = (cardW, isMobile = false) => {
         const bezelPadding = isMobile ? 12 : 16;
-        const bezelMargin = isMobile ? 6 : 8;
+        const bezelMargin = isMobile ? 8 : 12;
         const screenW = cardW - bezelPadding;
         const screenH = Math.round(screenW * ratio);
         const bezelH = screenH + bezelPadding;
@@ -137,18 +137,19 @@ export function renderEvolution(text, lang = '') {
         let maxTitleH = 0;
         if (items.some(i => Boolean(i.year))) {
             const maxTitleLen = Math.max(...items.map(i => (i.year || '').length));
-            maxTitleH = maxTitleLen > 25 ? 44 : 26;
+            maxTitleH = maxTitleLen > 18 ? 48 : 30;
         }
 
         let maxCapH = 0;
         if (items.some(i => Boolean(i.caption))) {
             const maxCapLen = Math.max(...items.map(i => (i.caption || '').length));
-            if (maxCapLen > 80) maxCapH = 50;
-            else if (maxCapLen > 40) maxCapH = 34;
+            if (maxCapLen > 75) maxCapH = 60;
+            else if (maxCapLen > 35) maxCapH = 40;
             else maxCapH = 20;
         }
 
-        return bezelH + bezelMargin + maxTitleH + maxCapH;
+        // Include 16px safety buffer for line-height and font rendering variances
+        return bezelH + bezelMargin + maxTitleH + maxCapH + 12;
     };
 
     const trackBase = getCardHeight(cardBase, true);
@@ -187,7 +188,7 @@ export function renderEvolution(text, lang = '') {
         return `
         <div class="evolution-card absolute top-0 flex flex-col items-center justify-start transition-none will-change-transform pointer-events-none" style="--card-w-base: ${cardBase}px; --card-w-sm: ${cardSm}px; --card-w-md: ${cardMd}px;" data-index="${index}">
             <!-- Device Frame Outer Bezel -->
-            <div class="relative w-full bg-[#1a1b1e] border border-white/10 p-1.5 sm:p-2 rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl mb-1.5 sm:mb-2">
+            <div class="relative w-full bg-[#1a1b1e] border border-white/10 p-1.5 sm:p-2 rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl mb-3 sm:mb-4">
                 <!-- Dynamic Island / Speaker notch -->
                 <div class="absolute top-2.5 sm:top-3.5 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-2.5 sm:h-3.5 bg-black rounded-full z-20 flex items-center justify-center opacity-80 pointer-events-none">
                     <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#0d0d0e]"></span>
@@ -199,7 +200,7 @@ export function renderEvolution(text, lang = '') {
                 </div>
             </div>
             ${item.year ? `<span class="font-display px-2 py-0.5 sm:py-1 text-center text-[15px] sm:text-[17px] font-bold tracking-tight text-neutral-100 leading-snug">${item.year}</span>` : ''}
-            ${item.caption ? `<p class="font-body text-[11px] sm:text-xs text-white/70 text-center px-1 sm:px-2 line-clamp-3 leading-relaxed mt-0.5">${item.caption}</p>` : ''}
+            ${item.caption ? `<p class="font-body text-[11px] sm:text-xs text-white/70 text-center px-1 sm:px-2 line-clamp-3 leading-relaxed">${item.caption}</p>` : ''}
         </div>
         `;
     }).join('\n');
