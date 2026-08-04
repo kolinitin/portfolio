@@ -5,7 +5,7 @@
 ```summary
 CHALLENGE: RMG ban disrupted the core business, leaving millions of users without a meaningful product and immediate risk to engagement.
 STRATEGY: Reframed the problem and built a watch-along platform, taking the product from concept to launch in **~2 months**.
-RESULTS: Scaled to **7M+ WAU in 2 months**, with **19.8 mins avg daily time spent**, driving strong early engagement during a high-uncertainty transition.
+RESULTS: Grew from 5M to 7M+ WAU within 2 months of launch, with 19.8 mins avg daily time spent, driving strong engagement during a high-uncertainty transition.
 ```
 
 ---
@@ -46,11 +46,12 @@ This led to a **Watch-Along platform**:
 
 A 1-week sprint covered:
 
-```pointers
+```timeline
 Competitive Benchmarking : Twitch, Playback, YouTube, Instagram
 Core Experience Definition : The watch-along loop
 Engagement Design Exploration : Chat, reactions, predictions
 Feasibility & Scalability Validation : Speed and scale trade-offs
+Stakeholder Alignment : Get early buy-in on what to build
 ```
 
 ### Designing for Speed and Continuity

@@ -1,6 +1,8 @@
 import { renderMetadata } from './metadata.js';
 import { renderSummary } from './summary.js';
 import { renderPointers } from './pointers.js';
+import { renderTimeline } from './timeline.js';
+import { renderPipeline } from './pipeline.js';
 import { renderResults } from './results.js';
 import { renderVideo } from './video.js';
 import { renderEvolution } from './evolution.js';
@@ -23,6 +25,8 @@ export function createCodeBlockRenderer() {
         if (lang === 'metadata') return renderMetadata(token.text);
         if (lang === 'summary') return renderSummary(token.text);
         if (lang === 'pointers') return renderPointers(token.text);
+        if (lang.startsWith('timeline')) return renderTimeline(token.text);
+        if (lang.startsWith('pipeline') || lang.startsWith('flow')) return renderPipeline(token.text);
         if (lang === 'results') return renderResults(token.text);
         if (lang === 'video') return renderVideo(token.text);
         if (lang.startsWith('evolution')) return renderEvolution(token.text, token.lang || lang);

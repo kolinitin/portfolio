@@ -11,7 +11,7 @@ const NAV_LINKS = [
     { href: 'about.html', label: 'About', page: 'about' },
     { href: 'work.html', label: 'Work', page: 'work' },
     // { href: 'index.html#leadership', label: 'Leadership', page: null },
-    { href: 'https://www.linkedin.com/in/nitinkoli/', label: 'Linkedin', page: null, target: '_blank' },
+    { href: 'https://www.linkedin.com/in/nitinkoli/', label: 'LinkedIn', page: null, target: '_blank' },
 ];
 
 const EXTERNAL_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block -mt-0.5"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>`;
