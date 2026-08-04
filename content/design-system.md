@@ -63,7 +63,7 @@ The harder problem was organizational, not technical: there was no dedicated hea
 
 ## What Shipped (v1, 6 months)
 
-Eighteen tokenized foundations and components went live in the first version:
+Tokenized foundations and components went live in the first version, organized by category:
 
 ### Foundations
 
@@ -75,7 +75,7 @@ Colors, Typography, Spacing, Radius, Border, Elevation, Opacity
 
 ### Components
 
-A tokenized library across actions, inputs, navigation, and feedback.
+A tokenized library across actions, selection controls, inputs, navigation, feedback, tags, surfaces, and system elements.
 
 ![wide: A tokenized component library, one shared source of truth](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/all-components.png)
 
