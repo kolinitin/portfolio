@@ -2,8 +2,6 @@
 
 ![placeholder](placeholder)
 
-**[VISUAL: Cover image — token architecture or component library grid, hero shot for the case study]**
-
 ```summary
 CHALLENGE: Rapid growth led to inconsistent UI, slow design-to-dev handoff, and teams diverging on shared patterns, with no dedicated team or budget to fix it.
 STRATEGY: Initiated and led a tokenized design system, syncing Figma directly to code via the Figma API, taking it from concept to v1 launch in **~6 months** with a 3-designer, 3-engineer team working part-time alongside regular delivery work.
@@ -27,8 +25,6 @@ There was no dedicated team or mandate to fix this. I initiated the conversation
 ### My Role
 
 I led the initiative from the planning phase, working with three engineers to define the technical approach. In this phase I was the only designer involved: framing the problem, running explorations, and driving the team toward a final architecture.
-
-**[VISUAL: Early exploration sketches or whiteboard shots from the planning phase, if available]**
 
 ---
 
