@@ -144,7 +144,7 @@ https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/squad-goal-l
 
 ## Key Takeaways
 
-- **Move fast when it matters most** 
-- Clear principles align teams faster than detailed plans
-- Good design leadership is about making clear decisions in uncertainty
+- Ruthless prioritization, not just speed, made the 2-month timeline work
+- Close, continuous stakeholder involvement kept decisions fast, not just aligned
+- Cross-functional alignment (product, design, tech) is what absorbs last-minute changes under ambiguity
 

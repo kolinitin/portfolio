@@ -184,7 +184,7 @@ export function renderScreens(text, lang = '') {
                     </div>
                 </div>
             </div>`
-            : `<img src="${item.mediaUrl}" alt="${item.caption || item.title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full ${mediaRounded} block object-cover" />`;
+            : `<img src="${item.mediaUrl}" alt="${item.caption || item.title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full ${mediaRounded} block object-cover object-top" />`;
 
         const titleHtml = item.title
             ? `<div class="mt-3"><span class="font-display ${titleClass} font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 rounded-full border border-amber-500/20">${item.title}</span></div>`

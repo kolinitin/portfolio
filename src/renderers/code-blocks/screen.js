@@ -5,53 +5,106 @@ import { renderScreens } from './screens.js';
  *
  * Renders a single standalone screen or delegates to horizontal scroll for multiple items.
  *
+ * Supports options in lang or line parameters:
+ * - Resolution/Aspect ratio: e.g. `720x2086`, `360x720`, `390x844`, `ratio: 720/2086`
+ * - Fit mode / alignment: `contain`, `top`, `cover`
+ * - Notch toggle: `no-notch` / `notch:false`
+ *
  * @param {string} text - Raw code block text.
- * @param {string} lang - Language tag (e.g. `screen`, `screen:small`, `screen:big`).
+ * @param {string} lang - Language tag (e.g. `screen`, `screen 720x2086`, `screen:720x2086`).
  * @returns {string} HTML string.
  */
 export function renderScreen(text, lang = '') {
     const rawLines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
     if (rawLines.length === 0) return '';
 
-    // If multiple lines or size/landscape tag present in lang, delegate to renderScreens
+    const isUrl = (str) => {
+        if (!str) return false;
+        const s = str.trim();
+        return s.startsWith('http://') || s.startsWith('https://') || s.startsWith('/') || s.startsWith('./') || Boolean(s.match(/\.(mp4|webm|mov|png|jpg|jpeg|svg|webp)(\?.*)?$/i));
+    };
+
     const langLower = (lang || '').toLowerCase();
-    if (rawLines.length > 1 || (lang && (lang.includes(':') || lang.includes('small') || lang.includes('big') || lang.includes('landscape')))) {
+
+    // Check how many actual media lines exist in the input
+    const mediaLines = rawLines.filter(line => {
+        const parts = line.split(/\s+:\s+/).map(p => p.trim());
+        return parts.some(isUrl);
+    });
+
+    // Delegate to renderScreens if explicitly requested or if multiple screen items are present
+    if (mediaLines.length > 1 || langLower.startsWith('screens') || langLower.includes('scroll')) {
         return renderScreens(text, lang);
     }
 
+    let aspectW = 0;
+    let aspectH = 0;
+    let isLandscape = false;
+    let fitMode = 'cover';
+    let showNotch = true;
+
+    const parseParams = (str) => {
+        if (!str) return;
+        const s = str.toLowerCase().trim();
+
+        // 1. Resolution / Aspect ratio (e.g. 720x2086, 360x720, 390x844, ratio: 720/2086)
+        const resMatch = s.match(/(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)/i);
+        if (resMatch) {
+            const w = parseFloat(resMatch[1]);
+            const h = parseFloat(resMatch[2]);
+            if (w > 0 && h > 0) {
+                aspectW = w;
+                aspectH = h;
+                if (w > h) isLandscape = true;
+            }
+        }
+
+        // 2. Landscape check
+        if (s.includes('landscape')) {
+            isLandscape = true;
+        }
+
+        // 3. Fit mode / alignment
+        if (s.includes('contain')) fitMode = 'contain';
+        else if (s.includes('top') || s.includes('fit-top') || s.includes('object-top')) fitMode = 'top';
+
+        // 4. Notch toggle
+        if (s.includes('no-notch') || s.includes('nonotch') || s.includes('notch:false') || s.includes('notch=false') || s.includes('no_notch')) {
+            showNotch = false;
+        }
+    };
+
+    // 1. Parse params from language tag (e.g. `screen 720x2086`, `screen:720x2086 no-notch`)
+    parseParams(lang);
+
+    // 2. Parse params from lines before the media URL line
+    while (rawLines.length > 0) {
+        const firstLine = rawLines[0];
+        const parts = firstLine.split(/\s+:\s+/).map(p => p.trim());
+        const containsUrl = parts.some(isUrl);
+        if (!containsUrl) {
+            parseParams(firstLine);
+            rawLines.shift();
+        } else {
+            break;
+        }
+    }
+
+    if (rawLines.length === 0) return '';
+
     let rawLine = rawLines[0];
-    if (!rawLine) return '';
 
-    let isLandscape = langLower.includes('landscape');
-    let aspectW = isLandscape ? 892 : 412;
-    let aspectH = isLandscape ? 412 : 892;
-
-    // Check ONLY for explicit resolution tag at line start (e.g. `892x412 :`) or in brackets (e.g. `[892x412]`)
-    const resMatch = rawLine.match(/^(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)\s*:/i) ||
-                     rawLine.match(/\[(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)[\]]/i);
-    if (resMatch) {
-        const w = parseFloat(resMatch[1]);
-        const h = parseFloat(resMatch[2]);
-        if (w > 0 && h > 0) {
-            aspectW = w;
-            aspectH = h;
-            if (w > h) isLandscape = true;
-        }
+    // Check inline bracket tags on the media line (e.g. `[720x2086] [no-notch]`)
+    const bracketMatches = rawLine.match(/\[(.*?)\]/g);
+    if (bracketMatches) {
+        bracketMatches.forEach(b => parseParams(b));
     }
 
-    // Check ONLY for explicit `landscape :` line prefix, `[landscape]` tag, or filename matching `-_landscape.`
-    if (rawLine.match(/^landscape\s*:/i) || rawLine.match(/\[landscape\]/i) || rawLine.match(/[-_]landscape\.(png|jpg|jpeg|webp|mp4|webm)/i)) {
-        isLandscape = true;
-        if (aspectW < aspectH) {
-            aspectW = 892;
-            aspectH = 412;
-        }
-    }
-
+    // Clean inline bracket tags and leading parameter prefixes from the media line
     rawLine = rawLine
         .replace(/^landscape\s*:\s*/i, '')
-        .replace(/\[landscape\]/gi, '')
-        .replace(/\[?(?:aspect|ratio|size|resolution)?[:=]?\s*\d+(?:\.\d+)?\s*[:x\/]\s*\d+(?:\.\d+)?\]?/gi, '')
+        .replace(/\[.*?\]/g, '')
+        .replace(/^(?:aspect|ratio|size|resolution)?[:=]?\s*\d+(?:\.\d+)?\s*[:x\/]\s*\d+(?:\.\d+)?\s*:\s*/i, '')
         .trim();
 
     const parts = rawLine.split(/\s+:\s+/).map(p => p.trim()).filter(Boolean);
@@ -63,7 +116,7 @@ export function renderScreen(text, lang = '') {
     if (parts.length === 1) {
         mediaUrl = parts[0];
     } else if (parts.length === 2) {
-        if (parts[0].match(/^(https?:\/\/|\/|\.\/)/i)) {
+        if (isUrl(parts[0])) {
             mediaUrl = parts[0];
             caption = parts[1];
         } else {
@@ -78,11 +131,25 @@ export function renderScreen(text, lang = '') {
 
     if (!mediaUrl) return '';
 
+    // Set default aspect ratio if not explicitly specified
+    if (aspectW === 0 || aspectH === 0) {
+        aspectW = isLandscape ? 892 : 412;
+        aspectH = isLandscape ? 412 : 892;
+    }
+
     const isVideo = Boolean(mediaUrl.match(/\.(mp4|webm|mov)(\?.*)?$/i));
+
+    // Choose object fit/position class
+    let imgObjectFitClass = 'object-cover object-top';
+    if (fitMode === 'contain') {
+        imgObjectFitClass = 'object-contain object-top';
+    } else if (fitMode === 'top') {
+        imgObjectFitClass = 'object-cover object-top';
+    }
 
     const mediaHtml = isVideo
         ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden rounded-[1.75rem]">
-            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-full rounded-[1.75rem] block object-cover pointer-events-auto cursor-pointer"></video>
+            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-full rounded-[1.75rem] block ${imgObjectFitClass} pointer-events-auto cursor-pointer"></video>
             
             <!-- Hover Video Overlay Controls -->
             <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
@@ -105,7 +172,7 @@ export function renderScreen(text, lang = '') {
                 </div>
             </div>
         </div>`
-        : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full rounded-[1.75rem] block object-cover" />`;
+        : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full rounded-[1.75rem] block ${imgObjectFitClass}" />`;
 
     const titleHtml = title
         ? `<div class="mt-4"><span class="font-display px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 rounded-full border border-amber-500/20">${title}</span></div>`
@@ -123,15 +190,18 @@ export function renderScreen(text, lang = '') {
         ? 'left-3.5 top-1/2 -translate-y-1/2 h-16 w-3.5 flex-col gap-1.5'
         : 'top-4 left-1/2 -translate-x-1/2 w-20 h-4 gap-1.5';
 
+    const notchHtml = showNotch
+        ? `<div class="absolute ${dynamicIslandClass} bg-black rounded-full z-20 flex items-center justify-center opacity-90">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#0d0d0e]"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#16171a]"></span>
+        </div>`
+        : '';
+
     return `
     <div class="w-full ${cardWidthClass} mx-auto my-12 flex flex-col items-center select-none">
         <!-- CSS Mobile Device Frame -->
         <div class="relative w-full rounded-[2.25rem] bg-[#1a1b1e] border-[6px] border-[#2b2c30] shadow-2xl p-2 ghost-border">
-            <!-- Dynamic Island / Top Speaker Bar -->
-            <div class="absolute ${dynamicIslandClass} bg-black rounded-full z-20 flex items-center justify-center opacity-90">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#0d0d0e]"></span>
-                <span class="w-1.5 h-1.5 rounded-full bg-[#16171a]"></span>
-            </div>
+            ${notchHtml}
             <!-- Screen Media Container -->
             <div class="screen-media-frame relative w-full overflow-hidden rounded-[1.75rem] bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
                 ${mediaHtml}
@@ -142,3 +212,4 @@ export function renderScreen(text, lang = '') {
     </div>
     `;
 }
+

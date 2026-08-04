@@ -155,7 +155,7 @@ ADOPTION : 60% : Of match-active users
 RETENTION : 40% : Of match-active users
 ```
 
-```screen
+```screen 720x1636
 https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-fantasy-commentary.png : Merged commentary with Fantasy points
 ```
 
@@ -172,7 +172,7 @@ ADOPTION : 8% : Of match-active users
 RETENTION : 15% : Of match-active users
 ```
 
-```screen
+```screen 720x2086
 https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-compare-team.png : Dedicated side-by-side team comparison view
 ```
 

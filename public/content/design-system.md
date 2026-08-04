@@ -2,8 +2,6 @@
 
 ![placeholder](placeholder)
 
-**[VISUAL: Cover image — token architecture or component library grid, hero shot for the case study]**
-
 ```summary
 CHALLENGE: Rapid growth led to inconsistent UI, slow design-to-dev handoff, and teams diverging on shared patterns, with no dedicated team or budget to fix it.
 STRATEGY: Initiated and led a tokenized design system, syncing Figma directly to code via the Figma API, taking it from concept to v1 launch in **~6 months** with a 3-designer, 3-engineer team working part-time alongside regular delivery work.
@@ -27,8 +25,6 @@ There was no dedicated team or mandate to fix this. I initiated the conversation
 ### My Role
 
 I led the initiative from the planning phase, working with three engineers to define the technical approach. In this phase I was the only designer involved: framing the problem, running explorations, and driving the team toward a final architecture.
-
-**[VISUAL: Early exploration sketches or whiteboard shots from the planning phase, if available]**
 
 ---
 
@@ -55,7 +51,7 @@ Codebase : Components consume tokens
 &nbsp;
 
 #### Naming convention, applied
-![wide: Component tokens breakdown](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/component-tokens-breakdown.png)
+![wide: Every attribute named by component, variant, state, and property: no ambiguity for engineering to consume](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/component-tokens-breakdown.png)
 
 ### Team and Execution
 
@@ -67,7 +63,7 @@ The harder problem was organizational, not technical: there was no dedicated hea
 
 ## What Shipped (v1, 6 months)
 
-Eighteen tokenized foundations and components went live in the first version:
+Tokenized foundations and components went live in the first version, organized by category:
 
 ### Foundations
 
@@ -79,7 +75,7 @@ Colors, Typography, Spacing, Radius, Border, Elevation, Opacity
 
 ### Components
 
-A tokenized library across actions, inputs, navigation, and feedback.
+A tokenized library across actions, selection controls, inputs, navigation, feedback, tags, surfaces, and system elements.
 
 ![wide: A tokenized component library, one shared source of truth](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/all-components.png)
 
@@ -102,7 +98,7 @@ v1 remained the core system through to the platform's shutdown. Only minor itera
 
 In 2024, I presented this work at the Figma Design & Dev Leaders meet, covering the challenges we faced, our approach, how we built and maintained the system, and what we learned.
 
-**[VISUAL: Photos from the Figma talk]**
+![Presenting at the Figma Design & Dev Leaders Meetup, 2024](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/speaker-figma-event.jpg)
 
 ---
 
