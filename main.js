@@ -3,6 +3,7 @@ import { initNav } from './src/components/nav.js';
 import { initAnimations } from './src/animations.js';
 import { initProjectsGrid } from './src/pages/home.js';
 import { initCaseStudy } from './src/pages/case-study.js';
+import { initExplorationsList } from './src/pages/explorations.js';
 import { initVideoPlayers } from './src/components/video-player.js';
 import { initAssetLoader } from './src/components/asset-loader.js';
 
@@ -23,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById('projects-container');
     if (projectsContainer) {
         initProjectsGrid(projectsContainer);
+    }
+
+    const explorationsContainer = document.getElementById('explorations-container');
+    if (explorationsContainer) {
+        initExplorationsList(explorationsContainer);
     }
 
     const caseStudyContainer = document.getElementById('markdown-content');

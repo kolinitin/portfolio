@@ -26,7 +26,7 @@ Evaluated asynchronously by busy executives, recruiters, and founders looking th
 
 - Mobile-responsive web pages (`index.html`, `about.html`, `work.html`, `case-study.html`).
 - Built with HTML5, Vite, Tailwind CSS v4, Vanilla JavaScript, and GSAP animations.
-- Dynamic project rendering via markdown case studies (`content/golden-flow.md`, `content/watch-along.md`, `content/ambiguity-revenue.md`) and JSON manifest (`content/projects.json`).
+- Dynamic project rendering via markdown case studies (`content/golden-flow.md`, `content/watch-along.md`, `content/ambiguity-revenue.md`) and JSON manifests (`content/projects.json`, `content/explorations.json`).
 - Downloadable resume CV hosted via R2 CDN link.
 
 ## Brand Commitments

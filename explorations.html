@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitin Koli | Explorations</title>
+    <meta name="description"
+        content="AI prototypes, design concepts, and experimental product directions by Nitin Koli, Principal Product Designer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-black text-white antialiased min-h-screen" data-page="explorations">
+
+    <!-- Header injected by main.js -->
+    <div id="site-header"></div>
+
+    <main class="pt-32 pb-24 min-h-screen">
+        <section class="max-w-[840px] w-full mx-auto px-6 py-16 sm:py-24">
+            <div class="gsap-reveal mb-16">
+                <h1 class="text-4xl md:text-5xl font-medium leading-tight mb-4 text-white">Explorations</h1>
+                <p class="text-lg text-white/70 max-w-2xl leading-relaxed">
+                    AI prototypes, design concepts, and experimental product directions.
+                </p>
+            </div>
+
+            <!-- Vertical List of Explorations injected dynamically via explorations.json -->
+            <div id="explorations-container" class="space-y-12 sm:space-y-16">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer injected by main.js -->
+    <div id="site-footer"></div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

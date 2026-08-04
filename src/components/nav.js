@@ -8,9 +8,9 @@
  */
 
 const NAV_LINKS = [
-    { href: 'about.html', label: 'About', page: 'about' },
     { href: 'work.html', label: 'Work', page: 'work' },
-    // { href: 'index.html#leadership', label: 'Leadership', page: null },
+    { href: 'explorations.html', label: 'Explorations', page: 'explorations' },
+    { href: 'about.html', label: 'About', page: 'about' },
     { href: 'https://www.linkedin.com/in/nitinkoli/', label: 'LinkedIn', page: null, target: '_blank' },
 ];
 

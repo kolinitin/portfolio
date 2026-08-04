@@ -1,0 +1,32 @@
+[
+  {
+    "id": "freetoplay",
+    "title": "Free-to-play Fantasy Concept",
+    "description": "Built a prototype using Claude & Cursor to explore a free-to-play plus subscription direction, helping stakeholders evaluate the concept. Direction was explored, not launched.",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-freetoplay.png",
+    "imageAlt": "F2P Subscription Concept Preview",
+    "linkUrl": "https://kolinitin.github.io/d11-freetoplay/",
+    "linkText": "View Prototype",
+    "isExternal": true
+  },
+  {
+    "id": "avatar-generator",
+    "title": "Avatar Generator",
+    "description": "Built a working demo using Google AI Studio that converts a user photo into a sports-pose avatar while preserving facial features. Later built and shipped by a different team.",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/ai-player-card.png",
+    "imageAlt": "Avatar Generator Preview",
+    "linkUrl": "https://player-card.ai.studio",
+    "linkText": "View Prototype",
+    "isExternal": true
+  },
+  {
+    "id": "cine-spin",
+    "title": "AI Movie Curator",
+    "description": "Built an AI-powered movie curation prototype using Google AI Studio that recommends one hidden gem instead of overwhelming users with endless lists.",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/ai-cine-spin.png",
+    "imageAlt": "AI Movie Curator Preview",
+    "linkUrl": "https://cine-spin.ai.studio",
+    "linkText": "View Prototype",
+    "isExternal": true
+  }
+]
