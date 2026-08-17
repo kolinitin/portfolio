@@ -15,7 +15,7 @@
     "description": "Built a working demo using Google AI Studio that converts a user photo into a sports-pose avatar while preserving facial features. Later built and shipped by a different team.",
     "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/ai-player-card.png",
     "imageAlt": "Avatar Generator Preview",
-    "linkUrl": "https://player-card.ai.studio",
+    "linkUrl": "https://ultimate-player-card-creator-218383783235.asia-southeast1.run.app",
     "linkText": "View Prototype",
     "isExternal": true
   },
@@ -25,7 +25,7 @@
     "description": "Built an AI-powered movie curation prototype using Google AI Studio that recommends one hidden gem instead of overwhelming users with endless lists.",
     "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/ai-cine-spin.png",
     "imageAlt": "AI Movie Curator Preview",
-    "linkUrl": "https://cine-spin.ai.studio",
+    "linkUrl": "https://cinespin.ai.studio",
     "linkText": "View Prototype",
     "isExternal": true
   }
