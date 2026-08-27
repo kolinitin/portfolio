@@ -1,4 +1,5 @@
 import { renderScreens } from './screens.js';
+import { parseAnnotation, renderAnnotation } from '../annotation.js';
 
 /**
  * Custom marked renderer for `screen` code blocks.
@@ -9,6 +10,7 @@ import { renderScreens } from './screens.js';
  * - Resolution/Aspect ratio: e.g. `720x2086`, `360x720`, `390x844`, `ratio: 720/2086`
  * - Fit mode / alignment: `contain`, `top`, `cover`
  * - Notch toggle: `no-notch` / `notch:false`
+ * - Annotations: `annotation: right, 120px, Carousel occupies vertical real estate when match is far away.`
  *
  * @param {string} text - Raw code block text.
  * @param {string} lang - Language tag (e.g. `screen`, `screen 720x2086`, `screen:720x2086`).
@@ -42,6 +44,13 @@ export function renderScreen(text, lang = '') {
     let isLandscape = false;
     let fitMode = 'cover';
     let showNotch = true;
+    let annotation = null;
+
+    // Check raw lines for annotation parameter
+    rawLines.forEach(line => {
+        const ann = parseAnnotation(line);
+        if (ann) annotation = ann;
+    });
 
     const parseParams = (str) => {
         if (!str) return;
@@ -71,6 +80,11 @@ export function renderScreen(text, lang = '') {
         // 4. Notch toggle
         if (s.includes('no-notch') || s.includes('nonotch') || s.includes('notch:false') || s.includes('notch=false') || s.includes('no_notch')) {
             showNotch = false;
+        }
+
+        // 5. Annotation in string
+        if (!annotation) {
+            annotation = parseAnnotation(str);
         }
     };
 
@@ -105,6 +119,7 @@ export function renderScreen(text, lang = '') {
         .replace(/^landscape\s*:\s*/i, '')
         .replace(/\[.*?\]/g, '')
         .replace(/^(?:aspect|ratio|size|resolution)?[:=]?\s*\d+(?:\.\d+)?\s*[:x\/]\s*\d+(?:\.\d+)?\s*:\s*/i, '')
+        .replace(/(?:annotation|annotate|callout)\s*[:=]\s*[^:\n]+/i, '')
         .trim();
 
     const parts = rawLine.split(/\s+:\s+/).map(p => p.trim()).filter(Boolean);
@@ -149,7 +164,7 @@ export function renderScreen(text, lang = '') {
 
     const mediaHtml = isVideo
         ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden rounded-[1.75rem]">
-            <video src="${mediaUrl}" autoplay loop muted playsinline class="w-full h-full rounded-[1.75rem] block ${imgObjectFitClass} pointer-events-auto cursor-pointer"></video>
+            <video src="${mediaUrl}" autoplay loop muted playsinline class="absolute inset-0 w-full h-full rounded-[1.75rem] block ${imgObjectFitClass} pointer-events-auto cursor-pointer"></video>
             
             <!-- Hover Video Overlay Controls -->
             <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
@@ -175,11 +190,12 @@ export function renderScreen(text, lang = '') {
         : `<img src="${mediaUrl}" alt="${caption || title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full rounded-[1.75rem] block ${imgObjectFitClass}" />`;
 
     const titleHtml = title
-        ? `<div class="mt-4"><span class="font-display px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 rounded-full border border-amber-500/20">${title}</span></div>`
+        ? `<div class="mt-3 sm:mt-4"><span class="font-display text-center text-[16px] sm:text-[18px] font-bold tracking-tight text-neutral-100 leading-snug">${title}</span></div>`
         : '';
 
+    const captionMarginClass = title ? 'mt-1' : 'mt-2.5 sm:mt-3';
     const captionHtml = caption
-        ? `<p class="font-body text-xs sm:text-sm text-white/70 text-center px-4 leading-relaxed mt-2">${caption}</p>`
+        ? `<p class="font-body text-xs sm:text-sm text-white/70 text-center px-4 leading-relaxed ${captionMarginClass}">${caption}</p>`
         : '';
 
     const cardWidthClass = isLandscape
@@ -197,14 +213,21 @@ export function renderScreen(text, lang = '') {
         </div>`
         : '';
 
+    const annotationHtml = renderAnnotation(annotation);
+
+    const annotationPaddingClass = annotation
+        ? (annotation.side === 'left' ? 'sm:pl-[340px]' : 'sm:pr-[340px]')
+        : '';
+
     return `
-    <div class="w-full ${cardWidthClass} mx-auto my-12 flex flex-col items-center select-none">
+    <div class="w-full ${cardWidthClass} mx-auto my-12 flex flex-col items-center select-none ${annotationPaddingClass}">
         <!-- CSS Mobile Device Frame -->
         <div class="relative w-full rounded-[2.25rem] bg-[#1a1b1e] border-[6px] border-[#2b2c30] shadow-2xl p-2 ghost-border">
             ${notchHtml}
             <!-- Screen Media Container -->
-            <div class="screen-media-frame relative w-full overflow-hidden rounded-[1.75rem] bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
+            <div class="screen-media-frame relative w-full overflow-visible rounded-[1.75rem] bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
                 ${mediaHtml}
+                ${annotationHtml}
             </div>
         </div>
         ${titleHtml}
@@ -212,4 +235,3 @@ export function renderScreen(text, lang = '') {
     </div>
     `;
 }
-

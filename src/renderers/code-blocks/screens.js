@@ -1,3 +1,5 @@
+import { parseAnnotation, renderAnnotation } from '../annotation.js';
+
 /**
  * Custom marked renderer for `screens` code blocks (free-flowing horizontal scroll).
  *
@@ -6,15 +8,8 @@
  * [size: small|big]
  * URL : CAPTION
  * TITLE : URL : CAPTION
+ * annotation: right, 120px, Callout text
  * ```
- *
- * Line syntax options:
- * 1) URL
- * 2) URL : CAPTION
- * 3) TITLE : URL : CAPTION
- *
- * Size can be set via language tag (`screens:small`, `screens:big`, `screens-small`),
- * first line parameter (`size: small`), or defaults to `big`.
  *
  * @param {string} text - Raw code block text.
  * @param {string} lang - Language identifier (e.g. `screens`, `screens:small`).
@@ -29,7 +24,7 @@ export function renderScreens(text, lang = '') {
     let blockAspectW = 0;
     let blockAspectH = 0;
 
-    // 1. Check language tag for keywords (e.g. `screens:landscape`, `screens:small`, `screens 892x412`)
+    // 1. Check language tag for keywords
     const langLower = (lang || '').toLowerCase();
     if (langLower.includes('small')) size = 'small';
     if (langLower.includes('big') || langLower.includes('large')) size = 'big';
@@ -45,7 +40,7 @@ export function renderScreens(text, lang = '') {
         if (blockAspectW > blockAspectH) blockIsLandscape = true;
     }
 
-    // 2. Check first line for params (e.g. `size: small`, `orientation: landscape`, `892x412`)
+    // 2. Check first line for params
     if (rawLines.length > 0) {
         const firstLineLower = rawLines[0].toLowerCase();
         if (firstLineLower.includes('landscape') || firstLineLower.includes('size') || firstLineLower.includes('x') || firstLineLower === 'small' || firstLineLower === 'big') {
@@ -67,15 +62,34 @@ export function renderScreens(text, lang = '') {
         }
     }
 
-    const items = rawLines.map(line => {
+    let currentAnnotation = null;
+    const items = [];
+
+    rawLines.forEach(line => {
+        const isMediaLine = line.includes('http://') || line.includes('https://') || line.includes('/') || Boolean(line.match(/\.(png|jpg|jpeg|webp|mp4|webm)/i));
+        const ann = parseAnnotation(line);
+
+        if (ann && !isMediaLine) {
+            if (items.length > 0 && !items[items.length - 1].annotation) {
+                items[items.length - 1].annotation = ann;
+            } else {
+                currentAnnotation = ann;
+            }
+            return;
+        }
+
         let isItemLandscape = blockIsLandscape;
         let itemAspectW = blockAspectW;
         let itemAspectH = blockAspectH;
         let cleanLine = line;
 
-        // Check ONLY for explicit resolution tag at line start (e.g. `892x412 :`) or in brackets (e.g. `[892x412]`)
+        const itemAnnotation = ann || parseAnnotation(cleanLine) || currentAnnotation;
+        if (isMediaLine) {
+            currentAnnotation = null;
+        }
+
         const resMatch = cleanLine.match(/^(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)\s*:/i) ||
-                         cleanLine.match(/\[(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)[\]]/i);
+            cleanLine.match(/\[(?:aspect|ratio|size|resolution)?[:=]?\s*(\d+(?:\.\d+)?)\s*[:x\/]\s*(\d+(?:\.\d+)?)[\]]/i);
         if (resMatch) {
             const w = parseFloat(resMatch[1]);
             const h = parseFloat(resMatch[2]);
@@ -86,16 +100,16 @@ export function renderScreens(text, lang = '') {
             }
         }
 
-        // Check ONLY for explicit `landscape :` line prefix, `[landscape]` tag, or filename matching `-_landscape.`
         if (cleanLine.match(/^landscape\s*:/i) || cleanLine.match(/\[landscape\]/i) || cleanLine.match(/[-_]landscape\.(png|jpg|jpeg|webp|mp4|webm)/i)) {
             isItemLandscape = true;
         }
 
-        // Clean up explicit prefix or bracket tags so they don't leak into title/caption text
         cleanLine = cleanLine
             .replace(/^landscape\s*:\s*/i, '')
             .replace(/\[landscape\]/gi, '')
             .replace(/\[?(?:aspect|ratio|size|resolution)?[:=]?\s*\d+(?:\.\d+)?\s*[:x\/]\s*\d+(?:\.\d+)?\]?/gi, '')
+            .replace(/(?:annotation|annotate|callout)\s*[:=]\s*[^:\n]+/i, '')
+            .replace(/\[(?:annotation|annotate|callout)\s*[:=]?\s*[^\]]+\]/gi, '')
             .trim();
 
         const parts = cleanLine.split(/\s+:\s+/).map(p => p.trim()).filter(Boolean);
@@ -119,8 +133,10 @@ export function renderScreens(text, lang = '') {
             caption = parts.slice(2).join(' : ');
         }
 
-        return { title, mediaUrl, caption, isLandscape: isItemLandscape, aspectW: itemAspectW, aspectH: itemAspectH };
-    }).filter(item => Boolean(item.mediaUrl));
+        if (mediaUrl) {
+            items.push({ title, mediaUrl, caption, isLandscape: isItemLandscape, aspectW: itemAspectW, aspectH: itemAspectH, annotation: itemAnnotation });
+        }
+    });
 
     if (items.length === 0) return '';
 
@@ -136,10 +152,6 @@ export function renderScreens(text, lang = '') {
 
     const dot1Class = isSmall ? 'w-1.5 h-1.5' : 'w-2.5 h-2.5';
     const dot2Class = isSmall ? 'w-1 h-1' : 'w-1.5 h-1.5';
-
-    const titleClass = isSmall
-        ? 'px-2.5 py-0.5 text-[10px]'
-        : 'px-3 py-1 text-xs';
 
     const captionClass = isSmall
         ? 'text-[11px] sm:text-xs text-white/70 text-center leading-normal mt-3 px-1'
@@ -161,7 +173,7 @@ export function renderScreens(text, lang = '') {
         const isVideo = Boolean(item.mediaUrl.match(/\.(mp4|webm|mov)(\?.*)?$/i));
         const mediaHtml = isVideo
             ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden ${mediaRounded}">
-                <video src="${item.mediaUrl}" autoplay loop muted playsinline class="w-full h-full ${mediaRounded} block object-cover pointer-events-auto cursor-pointer"></video>
+                <video src="${item.mediaUrl}" autoplay loop muted playsinline class="absolute inset-0 w-full h-full ${mediaRounded} block object-cover object-top pointer-events-auto cursor-pointer"></video>
                 
                 <!-- Hover Video Overlay Controls -->
                 <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
@@ -187,12 +199,15 @@ export function renderScreens(text, lang = '') {
             : `<img src="${item.mediaUrl}" alt="${item.caption || item.title || 'Screen preview'}" loading="eager" decoding="async" class="absolute inset-0 w-full h-full ${mediaRounded} block object-cover object-top" />`;
 
         const titleHtml = item.title
-            ? `<div class="mt-3"><span class="font-display ${titleClass} font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 rounded-full border border-amber-500/20">${item.title}</span></div>`
+            ? `<div class="mt-2.5 sm:mt-3"><span class="font-display text-center text-[15px] sm:text-[17px] font-bold tracking-tight text-neutral-100 leading-snug">${item.title}</span></div>`
             : '';
 
+        const captionMarginClass = item.title ? 'mt-1' : 'mt-2.5 sm:mt-3';
         const captionHtml = item.caption
-            ? `<p class="font-body ${captionClass}">${item.caption}</p>`
+            ? `<p class="font-body ${captionMarginClass} ${isSmall ? 'text-[11px] sm:text-xs text-white/70 text-center leading-normal px-1' : 'text-xs sm:text-sm text-white/70 text-center leading-relaxed px-2'}">${item.caption}</p>`
             : '';
+
+        const annotationHtml = renderAnnotation(item.annotation);
 
         return `
         <div class="horizontal-screen-card flex-none ${cardWidthClass} flex flex-col items-center select-none">
@@ -204,8 +219,9 @@ export function renderScreens(text, lang = '') {
                     <span class="${dot2Class} rounded-full bg-[#16171a]"></span>
                 </div>
                 <!-- Screen Media Container -->
-                <div class="screen-media-frame relative w-full overflow-hidden ${mediaRounded} bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
+                <div class="screen-media-frame relative w-full overflow-visible ${mediaRounded} bg-[#16171a]" style="aspect-ratio: ${aspectW} / ${aspectH};">
                     ${mediaHtml}
+                    ${annotationHtml}
                 </div>
             </div>
             ${titleHtml}

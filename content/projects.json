@@ -16,6 +16,14 @@
     "imageText": "Tokens, Components, and the System Behind Them"
   },
   {
+    "id": "home",
+    "title": "Home: Designing the First Decision Point",
+    "category": "Product Design",
+    "readTime": "6 min",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/d11-home.png",
+    "imageText": "Designing the First Decision Point"
+  },
+  {
     "id": "golden-flow",
     "title": "Evolving the Golden Flow: Screens & Features Over 10 Years",
     "category": "Product evolution",

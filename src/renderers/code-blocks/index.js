@@ -1,3 +1,5 @@
+import { marked } from 'marked';
+import { renderQuoteBlock } from '../blockquote.js';
 import { renderMetadata } from './metadata.js';
 import { renderSummary } from './summary.js';
 import { renderPointers } from './pointers.js';
@@ -21,6 +23,10 @@ import { renderScreens } from './screens.js';
 export function createCodeBlockRenderer() {
     return function (token) {
         const lang = (token.lang || '').toLowerCase().trim();
+
+        if (lang === 'quote' || lang === 'highlight' || lang === 'callout') {
+            return renderQuoteBlock(marked.parseInline(token.text.trim()));
+        }
 
         if (lang === 'metadata') return renderMetadata(token.text);
         if (lang === 'summary') return renderSummary(token.text);

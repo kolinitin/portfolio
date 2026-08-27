@@ -126,32 +126,7 @@
     }
   }
 
-  @supports (animation-timeline: view(inline)) {
-    .horizontal-screen-card {
-      animation: screenHorizontalReveal linear both;
-      animation-timeline: view(inline);
-      animation-range: cover 0% cover 100%;
-    }
 
-    @keyframes screenHorizontalReveal {
-      0% {
-        opacity: 0.5;
-        transform: scale(0.94);
-      }
-      18% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      82% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 0.5;
-        transform: scale(0.94);
-      }
-    }
-  }
 
   /* Subtle Aesthetic Asset Skeleton Loader */
   .asset-loading-skeleton {

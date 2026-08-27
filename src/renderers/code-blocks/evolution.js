@@ -160,7 +160,7 @@ export function renderEvolution(text, lang = '') {
         const isVideo = Boolean(item.image.match(/\.(mp4|webm|mov)(\?.*)?$/i));
         const mediaHtml = isVideo
             ? `<div class="custom-video-player absolute inset-0 w-full h-full group overflow-hidden rounded-[1.1rem] sm:rounded-[1.4rem]">
-                <video src="${item.image}" loop muted playsinline class="w-full h-full object-cover object-top rounded-[1.1rem] sm:rounded-[1.4rem] pointer-events-auto cursor-pointer" draggable="false"></video>
+                <video src="${item.image}" loop muted playsinline class="absolute inset-0 w-full h-full block object-cover object-top rounded-[1.1rem] sm:rounded-[1.4rem] pointer-events-auto cursor-pointer" draggable="false"></video>
                 
                 <!-- Hover Video Overlay Controls -->
                 <div class="custom-video-controls absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 pointer-events-none select-none">
@@ -199,8 +199,8 @@ export function renderEvolution(text, lang = '') {
                     ${mediaHtml}
                 </div>
             </div>
-            ${item.year ? `<span class="font-display px-2 py-0.5 sm:py-1 text-center text-[15px] sm:text-[17px] font-bold tracking-tight text-neutral-100 leading-snug">${item.year}</span>` : ''}
-            ${item.caption ? `<p class="font-body text-[11px] sm:text-xs text-white/70 text-center px-1 sm:px-2 line-clamp-3 leading-relaxed">${item.caption}</p>` : ''}
+            ${item.year ? `<span class="font-display px-2 text-center text-[15px] sm:text-[17px] font-bold tracking-tight text-neutral-100 leading-snug mt-2.5 sm:mt-3 block">${item.year}</span>` : ''}
+            ${item.caption ? `<p class="font-body text-[11px] sm:text-xs text-white/70 text-center px-1 sm:px-2 line-clamp-3 leading-relaxed ${item.year ? 'mt-1' : 'mt-2.5 sm:mt-3'}">${item.caption}</p>` : ''}
         </div>
         `;
     }).join('\n');

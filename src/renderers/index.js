@@ -4,6 +4,7 @@ import { createParagraphRenderer } from './paragraph.js';
 import { createListRenderer } from './list.js';
 import { createImageRenderer } from './image.js';
 import { createCodeBlockRenderer } from './code-blocks/index.js';
+import { createBlockquoteRenderer } from './blockquote.js';
 
 /**
  * Builds and registers a complete custom marked renderer.
@@ -18,11 +19,12 @@ export function buildRenderer(projectMeta) {
 
     const renderer = new marked.Renderer();
 
-    renderer.heading   = createHeadingRenderer(projectMeta);
-    renderer.paragraph = createParagraphRenderer();
-    renderer.list      = createListRenderer();
-    renderer.image     = createImageRenderer(projectMeta);
-    renderer.code      = createCodeBlockRenderer();
+    renderer.heading    = createHeadingRenderer(projectMeta);
+    renderer.paragraph  = createParagraphRenderer();
+    renderer.list       = createListRenderer();
+    renderer.image      = createImageRenderer(projectMeta);
+    renderer.code       = createCodeBlockRenderer();
+    renderer.blockquote = createBlockquoteRenderer();
 
     renderer.hr = function () {
         return '<div class="w-full border-t border-white/10 my-24"></div>';
