@@ -82,9 +82,10 @@ A daily one-hour catch-up helped resolve blockers and keep the campaign moving.
 The campaign was integrated across three key touchpoints in the fantasy journey: Home, Contest Cards, and Contest Details. Each touchpoint carried the campaign context forward, creating a consistent experience from discovery to contest entry.
 
 ```screens 360x740
-Home : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home.mp4 : This was the base screen we started off with.
-Contest Cards : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-card.mp4 : This was the base screen we started off with.
-Contest Details : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-details.mp4 : This was the base screen we started off with.
+Home : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home.mp4 : Main entry point for the campaign.
+Contest Cards : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-card.mp4 : Surfaces the offer at contest level.
+Contest Details : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-details.mp4 : Provides details on the offer and winner distribution.
+Winners : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-winners.png : Extends the campaign experience to the winning moment.
 ```
 
 With support from an illustrator, graphic designer, and animator, DreamSale evolved from a one-week promotion into an IPL-long experience, using the same real estate to deliver a fresh animated campaign story each week without structural changes.

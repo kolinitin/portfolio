@@ -9,7 +9,7 @@
 
 const NAV_LINKS = [
     { href: 'work.html', label: 'Work', page: 'work' },
-    { href: 'explorations.html', label: 'Explorations', page: 'explorations' },
+    // { href: 'explorations.html', label: 'Explorations', page: 'explorations' },
     { href: 'about.html', label: 'About', page: 'about' },
     { href: 'https://www.linkedin.com/in/nitinkoli/', label: 'LinkedIn', page: null, target: '_blank' },
 ];
