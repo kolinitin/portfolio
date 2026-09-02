@@ -4,7 +4,7 @@
     "title": "Launching a social sports experience from concept to launch in ~2 months",
     "category": "New Product Line",
     "readTime": "5 min",
-    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along.png",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-watch-along/d11-watch-along.webp",
     "imageText": "Launching a social sports experience"
   },
   {
@@ -12,23 +12,31 @@
     "title": "Building a Design System for Dream11",
     "category": "Design Systems",
     "readTime": "4 min",
-    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-design-system.png",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-design-system.webp",
     "imageText": "Tokens, Components, and the System Behind Them"
   },
   {
     "id": "home",
-    "title": "Home: Evolving the First Decision Point",
+    "title": "Home: Designing the First Decision Point",
     "category": "Product Design",
-    "readTime": "6 min",
-    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-evolution.png",
-    "imageText": "Evolving the First Decision Point"
+    "readTime": "8 min",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/d11-home.webp",
+    "imageText": "Designing the First Decision Point"
+  },
+  {
+    "id": "contests",
+    "title": "Contests: Designing for More Paid Joins",
+    "category": "Product Design",
+    "readTime": "7 min",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/d11-home.webp",
+    "imageText": "Designing for More Paid Joins"
   },
   {
     "id": "golden-flow",
     "title": "Evolving the Golden Flow: Screens & Features Over 10 Years",
     "category": "Product evolution",
     "readTime": "6 min",
-    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-evolution.png",
+    "imageUrl": "https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-evolution.webp",
     "imageText": "Evolving Screens & Features Over 10 Years"
   }
 ]

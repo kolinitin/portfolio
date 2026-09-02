@@ -155,4 +155,31 @@
   .media-fade-in.is-loaded {
     opacity: 1;
   }
+
+  /* Horizon arc glowing curve */
+  .cta-horizon-arc-glow {
+    box-shadow: 0 -20px 60px rgba(37, 99, 235, 0.25), 0 -4px 16px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Ambient glow pulse for final CTA section */
+  .animate-ambient-pulse {
+    animation: ambient-pulse 10s ease-in-out infinite;
+  }
+
+  @keyframes ambient-pulse {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.08);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ambient-pulse {
+      animation: none;
+    }
+  }
 }

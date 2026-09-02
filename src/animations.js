@@ -3,6 +3,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Clear GSAP internal scroll memory so it never restores old scroll position on refresh
+if (typeof ScrollTrigger.clearScrollMemory === 'function') {
+    ScrollTrigger.clearScrollMemory('manual');
+}
+
 /**
  * Attaches GSAP scroll-reveal animations to all elements matching `.gsap-reveal`
  * within an optional container (defaults to the full document).

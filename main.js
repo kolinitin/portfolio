@@ -8,7 +8,15 @@ import { initVideoPlayers } from './src/components/video-player.js';
 import { initAssetLoader } from './src/components/asset-loader.js';
 import { initTextGenerateEffect } from './src/components/text-generate-effect.js';
 
+// Disable automatic browser scroll restoration immediately on script evaluation
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+
     // Inject shared header and footer on every page
     initNav();
 
@@ -46,5 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const caseStudyContainer = document.getElementById('markdown-content');
     if (caseStudyContainer) {
         initCaseStudy(caseStudyContainer);
+    }
+});
+
+window.addEventListener('load', () => {
+    if (!window.location.hash) {
+        window.scrollTo(0, 0);
+    }
+});
+
+window.addEventListener('pageshow', () => {
+    if (!window.location.hash) {
+        window.scrollTo(0, 0);
     }
 });

@@ -1,4 +1,4 @@
-# Home: Evolving the First Decision Point
+# Home: Designing the First Decision Point
 
 ![placeholder](placeholder)
 
@@ -82,16 +82,25 @@ A daily one-hour catch-up helped resolve blockers and keep the campaign moving.
 The campaign was integrated across three key touchpoints in the fantasy journey: Home, Contest Cards, and Contest Details. Each touchpoint carried the campaign context forward, creating a consistent experience from discovery to contest entry.
 
 ```screens 360x740
-Home : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home.mp4 : This was the base screen we started off with.
-Contest Cards : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-card.mp4 : This was the base screen we started off with.
-Contest Details : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-details.mp4 : This was the base screen we started off with.
+Home : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home.mp4 : Main entry point for the campaign.
+Contest Cards : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-card.mp4 : Surfaces the offer at contest level.
+Contest Details : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-contest-details.mp4 : Provides details on the offer and winner distribution.
+Winners : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-winners.png : Extends the campaign experience to the winning moment.
 ```
 
-With support from an illustrator, graphic designer, and animator, DreamSale evolved from a one-week promotion into an IPL-long experience, using the same Home real estate to deliver a fresh animated campaign story each week without structural changes.
+With support from an illustrator, graphic designer, and animator, DreamSale evolved from a one-week promotion into an IPL-long experience, using the same real estate to deliver a fresh animated campaign story each week without structural changes.
+
+#### A few of the Home animations created across the campaign:
 
 ```evolution 360x740
-Teaser : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/teaser-mockup.mp4 : The final DreamSale experience in 2026
-Week 1 : https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/teaser-mockup.mp4 : The final DreamSale experience in 2026
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/teaser-mockup.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-1.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-2.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-3.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-4.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-5.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-6.mp4
+https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/dreamsale-home-7.mp4
 ```
 
 ---
@@ -112,16 +121,13 @@ This suggested an opportunity to introduce familiarity earlier, on Home.
 
 The existing match card already showed key information, including the mega-contest prize pool. We explored ways to add player familiarity without making the card denser:
 
-* Multiple players
-* Names versus images
-* Different explanations and placements
-* Icons and supporting treatments
-
-We chose to show one marquee player, enough to create a familiarity cue without competing with the card’s primary hierarchy.
+![Explored different combinations of players, content, placements, and supporting visual treatments.](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/popular-players-explorations.png)
 
 We also explored rotating multiple player names, but rejected it because it reduced clarity.
 
-![medium: Marquee player card treatment](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/marquee-player-final-mc.png)
+We chose to show one marquee player, enough to create a familiarity cue without competing with the card’s primary hierarchy.
+
+![Small: ✅ Final highlighted player card treatment](https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/d11-home/popular-player-mc-final.png)
 
 ### Measuring the decision
 
@@ -130,7 +136,11 @@ We ran an A/B test:
 * **Control:** Existing match card
 * **Experiment:** Match card with a marquee player
 
-The experiment produced a **1.4% uplift in matches played for non-popular matches** and was progressively rolled out.
+The experiment produced a 1.4% uplift and was progressively rolled out.
+
+```results
+UPLIFT : 1.4% : in matches played for non-popular matches.
+```
 
 Sports Operations managed the player shown for each match using existing tooling and signals such as popularity and performance.
 
