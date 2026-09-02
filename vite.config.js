@@ -61,6 +61,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
         work: resolve(__dirname, 'work.html'),
+        ai: resolve(__dirname, 'ai.html'),
         explorations: resolve(__dirname, 'explorations.html'),
         caseStudy: resolve(__dirname, 'case-study.html'),
       },

@@ -9,7 +9,7 @@
 
 const NAV_LINKS = [
     { href: 'work.html', label: 'Work', page: 'work' },
-    // { href: 'explorations.html', label: 'Explorations', page: 'explorations' },
+    { href: 'ai.html', label: 'AI', page: 'ai' },
     { href: 'about.html', label: 'About', page: 'about' },
     { href: 'https://www.linkedin.com/in/nitinkoli/', label: 'LinkedIn', page: null, target: '_blank' },
 ];
@@ -101,7 +101,7 @@ function buildFooter() {
             <div class="max-w-[840px] w-full mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex gap-6 text-white/70 font-medium text-sm">
                     <a href="https://pub-74f51145ab1c46dcabc851a4cda5d6a0.r2.dev/Resume-Nitin-Koli.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
-                        Download CV
+                        Download Resume
                     </a>
                 </div>
                 <div class="text-xs uppercase tracking-widest text-white/50">
