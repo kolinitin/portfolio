@@ -4,7 +4,7 @@
 
 ## Overview
 
-I owned Dream11’s Home experience from 2019 to May 2026. Home helped users discover matches, decide what to play, track joined matches, and support seasonal initiatives.
+I owned Dream11’s Home experience from 2019 to May 2025. Home helped users discover matches, decide what to play, track joined matches, and support seasonal initiatives.
 
 Its core question remained:
 
