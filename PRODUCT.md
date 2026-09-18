@@ -12,7 +12,7 @@ Design leaders, founders, hiring managers, and product teams at startups or high
 
 ## Product Purpose
 
-A personal portfolio website for Nitin Koli (Principal Product Designer) that showcases 15+ years of experience designing at scale (250M+ users), scaling design teams (6 → 55 designers), and navigating complex product challenges (e.g. Dream11 regulatory pivots, Watch Along). The site aims to build credibility, present detailed case studies, and drive inquiries/consulting engagements.
+A personal portfolio website for Nitin Koli (Principal Product Designer) that showcases 16 years of experience designing at scale (250M+ users), scaling design teams (6 → 55 designers), and navigating complex product challenges (e.g. Dream11 regulatory pivots, Watch Along). The site aims to build credibility, present detailed case studies, and drive inquiries/consulting engagements.
 
 ## Positioning
 
